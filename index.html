@@ -2,1095 +2,3309 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#070a0f">
-<title>GURDPANEL | VPN Management</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#172033">
+<title>GURDPANEL | پنل مدیریت</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 :root{
- --bg:#06080c;
- --panel:#0c1017;
- --panel2:#101620;
- --panel3:#151c27;
- --line:rgba(255,255,255,.075);
- --text:#f4f7fb;
- --muted:#8994a6;
- --green:#36e58b;
- --blue:#4da3ff;
- --red:#ff5571;
- --yellow:#ffc857;
- --shadow:0 18px 60px rgba(0,0,0,.28);
+  --primary:#1956c9;
+  --primary-dark:#123d91;
+  --navy:#172033;
+  --navy2:#202b40;
+  --bg:#f4f6f9;
+  --card:#ffffff;
+  --border:#e1e6ee;
+  --text:#172033;
+  --muted:#778196;
+  --success:#17864b;
+  --success-bg:#e9f7ef;
+  --danger:#c93434;
+  --danger-bg:#fcecec;
+  --warning:#b77900;
+  --warning-bg:#fff5dc;
+  --shadow:0 2px 10px rgba(20,35,60,.06);
 }
+
+html,body{
+  min-height:100%;
+}
+
 body{
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;
- background:
- radial-gradient(circle at 80% 0%,rgba(54,229,139,.07),transparent 28%),
- radial-gradient(circle at 10% 100%,rgba(77,163,255,.06),transparent 30%),
- var(--bg);
- color:var(--text);
- min-height:100vh;
+  font-family:
+    Tahoma,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:14px;
 }
-button,input,select{font-family:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
 
-.login{
- position:fixed;inset:0;z-index:999;
- display:flex;align-items:center;justify-content:center;
- padding:20px;
- background:
- radial-gradient(circle,rgba(54,229,139,.08),transparent 35%),
- #05070a;
+/* =========================
+   LOGIN
+========================= */
+
+.login-page{
+  position:fixed;
+  inset:0;
+  background:#eef2f7;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
 }
+
 .login-box{
- width:100%;max-width:400px;
- background:rgba(12,16,23,.95);
- border:1px solid var(--line);
- border-radius:24px;
- padding:32px;
- box-shadow:var(--shadow);
- backdrop-filter:blur(25px);
+  width:410px;
+  max-width:92%;
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:0 8px 35px rgba(20,35,60,.10);
+  border-radius:7px;
+  overflow:hidden;
 }
-.brand{text-align:center;margin-bottom:28px}
-.brand h1{font-size:31px;font-weight:950;letter-spacing:-1px}
-.brand h1 span{color:var(--green)}
-.brand p{color:var(--muted);font-size:11px;margin-top:7px}
-.field{margin-bottom:14px}
-.field label{display:block;color:#aab2c0;font-size:11px;margin-bottom:7px}
-.field input,.field select{
- width:100%;background:#080b10;border:1px solid var(--line);
- color:white;padding:13px;border-radius:11px;outline:none;
-}
-.field input:focus,.field select:focus{border-color:rgba(54,229,139,.5)}
-.primary{
- width:100%;border:0;background:var(--green);color:#031009;
- padding:13px;border-radius:11px;font-weight:900;
-}
-.error{color:var(--red);font-size:10px;text-align:center;margin-top:10px;min-height:14px}
 
-.app{min-height:100vh}
+.login-head{
+  background:var(--navy);
+  color:#fff;
+  padding:27px 30px;
+  text-align:center;
+}
+
+.login-logo{
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+.login-sub{
+  margin-top:8px;
+  color:#c9d2e2;
+  font-size:12px;
+}
+
+.login-body{
+  padding:28px;
+}
+
+.form-group{
+  margin-bottom:17px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:7px;
+  color:#4f5a6d;
+  font-size:13px;
+  font-weight:700;
+}
+
+.input{
+  width:100%;
+  height:44px;
+  border:1px solid #d7dde7;
+  border-radius:5px;
+  padding:0 13px;
+  outline:none;
+  background:#fff;
+  color:var(--text);
+  font-family:inherit;
+  transition:.15s;
+}
+
+.input:focus{
+  border-color:#7da0dc;
+  box-shadow:0 0 0 3px rgba(25,86,201,.08);
+}
+
+.login-button{
+  width:100%;
+  height:45px;
+  border:0;
+  border-radius:5px;
+  background:var(--primary);
+  color:#fff;
+  font-family:inherit;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.login-button:hover{
+  background:var(--primary-dark);
+}
+
+.login-error{
+  display:none;
+  background:var(--danger-bg);
+  color:var(--danger);
+  border:1px solid #f1caca;
+  padding:10px;
+  border-radius:5px;
+  margin-bottom:15px;
+  text-align:center;
+  font-size:12px;
+}
+
+.demo-login{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:11px;
+  text-align:center;
+}
+
+/* =========================
+   APP
+========================= */
+
+.app{
+  display:none;
+  min-height:100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar{
- position:fixed;right:0;top:0;bottom:0;width:255px;
- background:rgba(9,12,18,.95);border-left:1px solid var(--line);
- padding:22px 15px;z-index:100;backdrop-filter:blur(22px);
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  width:245px;
+  background:var(--navy);
+  color:#fff;
+  z-index:1000;
+  overflow-y:auto;
+  border-left:1px solid #29354a;
 }
-.logo{padding:7px 10px 25px}
-.logo h2{font-size:24px;font-weight:950}
-.logo h2 span{color:var(--green)}
-.logo small{display:block;color:#626d7d;font-size:9px;margin-top:4px;letter-spacing:1px}
-.menu-title{font-size:9px;color:#586272;font-weight:800;margin:18px 10px 8px}
-.nav{display:flex;flex-direction:column;gap:4px}
-.nav button{
- width:100%;border:0;background:transparent;color:#969faf;
- padding:11px 12px;border-radius:11px;text-align:right;
- display:flex;align-items:center;gap:11px;font-size:12px;
- transition:.18s;
-}
-.nav button:hover{background:rgba(255,255,255,.04);color:white}
-.nav button.active{
- color:var(--green);background:rgba(54,229,139,.08);
- border:1px solid rgba(54,229,139,.12);
-}
-.ico{width:20px;text-align:center;font-size:15px}
 
-.main{margin-right:255px;padding:24px;min-height:100vh}
+.brand{
+  height:70px;
+  display:flex;
+  align-items:center;
+  padding:0 21px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.brand-mark{
+  width:36px;
+  height:36px;
+  border-radius:5px;
+  background:#fff;
+  color:var(--navy);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:13px;
+  margin-left:10px;
+}
+
+.brand-text{
+  font-size:18px;
+  font-weight:800;
+}
+
+.brand-version{
+  display:block;
+  font-size:9px;
+  color:#9eabc0;
+  margin-top:2px;
+  font-weight:normal;
+}
+
+.menu-title{
+  padding:19px 20px 8px;
+  color:#7f8ca3;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.menu{
+  list-style:none;
+}
+
+.menu li{
+  padding:0 10px;
+}
+
+.menu button{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#c8d0dd;
+  height:43px;
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:0 12px;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:12px;
+  text-align:right;
+}
+
+.menu button:hover{
+  background:#202b40;
+  color:#fff;
+}
+
+.menu button.active{
+  background:#2555a5;
+  color:#fff;
+}
+
+.menu-icon{
+  width:21px;
+  text-align:center;
+  font-size:15px;
+}
+
+.sidebar-bottom{
+  padding:17px;
+  margin-top:15px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+
+.server-mini{
+  background:#202b40;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:5px;
+  padding:12px;
+}
+
+.server-mini-title{
+  font-size:11px;
+  color:#cbd3df;
+  margin-bottom:9px;
+}
+
+.online-line{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#b9c6d9;
+  font-size:10px;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#22a15c;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+  margin-right:245px;
+  min-height:100vh;
+}
+
 .topbar{
- display:flex;align-items:center;justify-content:space-between;
- margin-bottom:22px;
+  height:70px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 27px;
+  position:sticky;
+  top:0;
+  z-index:900;
 }
-.mobile-btn{
- display:none;border:1px solid var(--line);background:var(--panel);
- color:white;width:42px;height:42px;border-radius:11px;
-}
-.title h1{font-size:22px;font-weight:900}
-.title p{font-size:11px;color:var(--muted);margin-top:5px}
-.top-right{display:flex;gap:9px;align-items:center}
-.live{
- display:flex;align-items:center;gap:7px;
- border:1px solid rgba(54,229,139,.13);
- background:rgba(54,229,139,.06);
- color:var(--green);padding:9px 12px;border-radius:10px;font-size:10px;
-}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 9px var(--green)}
 
-.page{display:none}
-.page.active{display:block}
+.page-title{
+  font-size:17px;
+  font-weight:800;
+}
+
+.page-breadcrumb{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:4px;
+}
+
+.top-actions{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.top-btn{
+  height:37px;
+  padding:0 12px;
+  border:1px solid var(--border);
+  background:#fff;
+  color:#566174;
+  border-radius:5px;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:11px;
+}
+
+.top-btn:hover{
+  background:#f6f8fb;
+}
+
+.admin-user{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding-right:9px;
+  border-right:1px solid var(--border);
+  margin-right:2px;
+}
+
+.admin-avatar{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#e9eef8;
+  color:var(--primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+}
+
+.admin-name{
+  font-size:11px;
+  font-weight:700;
+}
+
+.admin-role{
+  font-size:9px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+  padding:25px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:17px;
+}
+
+.section-title{
+  font-size:15px;
+  font-weight:800;
+}
+
+.section-desc{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:5px;
+}
+
+.btn{
+  border:0;
+  border-radius:5px;
+  height:38px;
+  padding:0 15px;
+  font-family:inherit;
+  cursor:pointer;
+  font-size:11px;
+  font-weight:700;
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:var(--primary-dark);
+}
+
+.btn-light{
+  background:#fff;
+  color:#566174;
+  border:1px solid var(--border);
+}
+
+.btn-danger{
+  background:var(--danger-bg);
+  color:var(--danger);
+  border:1px solid #f1d0d0;
+}
+
+.btn-success{
+  background:var(--success-bg);
+  color:var(--success);
+  border:1px solid #cdebd9;
+}
+
+/* =========================
+   STAT CARDS
+========================= */
 
 .stats{
- display:grid;grid-template-columns:repeat(4,1fr);gap:13px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:20px;
 }
-.card{
- background:linear-gradient(145deg,rgba(17,23,32,.96),rgba(9,12,17,.96));
- border:1px solid var(--line);border-radius:16px;padding:18px;
- box-shadow:0 10px 40px rgba(0,0,0,.12);
+
+.stat-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:18px;
+  box-shadow:var(--shadow);
 }
-.stat-top{display:flex;justify-content:space-between;align-items:center}
-.stat-name{font-size:11px;color:var(--muted)}
+
+.stat-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
 .stat-icon{
- width:34px;height:34px;border-radius:10px;
- display:grid;place-items:center;background:rgba(255,255,255,.045)
+  width:39px;
+  height:39px;
+  background:#edf3ff;
+  color:var(--primary);
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
 }
-.stat-value{font-size:25px;font-weight:950;margin-top:14px}
-.stat-sub{font-size:9px;color:var(--muted);margin-top:5px}
 
-.green{color:var(--green)}
-.blue{color:var(--blue)}
-.yellow{color:var(--yellow)}
-.red{color:var(--red)}
+.stat-label{
+  color:var(--muted);
+  font-size:10px;
+}
 
-.grid{
- display:grid;grid-template-columns:1.35fr 1fr;gap:13px;margin-top:13px;
+.stat-number{
+  font-size:23px;
+  font-weight:800;
+  margin-top:8px;
 }
-.card-head{
- display:flex;justify-content:space-between;align-items:center;
- margin-bottom:15px;
-}
-.card-head h3{font-size:13px}
-.card-head span{font-size:9px;color:var(--muted)}
 
-.server{
- display:flex;align-items:center;justify-content:space-between;
- padding:13px 0;border-bottom:1px solid rgba(255,255,255,.055)
+.stat-footer{
+  color:#8490a3;
+  font-size:9px;
+  margin-top:7px;
 }
-.server:last-child{border-bottom:0}
-.server-left{display:flex;align-items:center;gap:10px}
-.server-icon{
- width:38px;height:38px;border-radius:11px;
- display:grid;place-items:center;background:rgba(77,163,255,.08);color:var(--blue)
-}
-.server-name{font-size:11px;font-weight:800}
-.server-ip{font-size:9px;color:var(--muted);margin-top:4px}
-.server-right{text-align:left}
-.online{font-size:9px;color:var(--green)}
-.load{width:90px;height:4px;background:#202732;border-radius:20px;margin-top:7px;overflow:hidden}
-.load i{display:block;height:100%;background:var(--green);border-radius:20px}
 
-.activity{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05)}
-.activity:last-child{border:0}
-.activity-icon{
- width:32px;height:32px;border-radius:9px;background:rgba(54,229,139,.07);
- display:grid;place-items:center
+.up{
+  color:var(--success);
 }
-.activity-text{font-size:10px}
-.activity-time{font-size:8px;color:var(--muted);margin-top:4px}
+
+/* =========================
+   GRID
+========================= */
+
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:6px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.card-header{
+  min-height:54px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+
+.card-title{
+  font-size:12px;
+  font-weight:800;
+}
+
+.card-body{
+  padding:18px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrap{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:6px;
+  box-shadow:var(--shadow);
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+}
+
+thead{
+  background:#f7f8fa;
+}
+
+th{
+  color:#6d7788;
+  font-size:10px;
+  font-weight:800;
+  text-align:right;
+  padding:13px 15px;
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+}
+
+td{
+  padding:14px 15px;
+  border-bottom:1px solid #edf0f4;
+  font-size:11px;
+  color:#384357;
+  white-space:nowrap;
+}
+
+tbody tr:hover{
+  background:#fafbfd;
+}
+
+tbody tr:last-child td{
+  border-bottom:0;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:58px;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:9px;
+  font-weight:800;
+}
+
+.badge-success{
+  color:var(--success);
+  background:var(--success-bg);
+}
+
+.badge-danger{
+  color:var(--danger);
+  background:var(--danger-bg);
+}
+
+.badge-warning{
+  color:var(--warning);
+  background:var(--warning-bg);
+}
+
+.badge-gray{
+  color:#697488;
+  background:#eef1f5;
+}
+
+.actions{
+  display:flex;
+  gap:5px;
+}
+
+.icon-btn{
+  width:29px;
+  height:29px;
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:4px;
+  cursor:pointer;
+  color:#647086;
+}
+
+.icon-btn:hover{
+  background:#f2f5f9;
+}
+
+/* =========================
+   SERVER STATUS
+========================= */
+
+.server-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:13px 0;
+  border-bottom:1px solid #edf0f4;
+}
+
+.server-item:last-child{
+  border-bottom:0;
+}
+
+.server-name{
+  font-size:11px;
+  font-weight:800;
+}
+
+.server-location{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:4px;
+}
+
+.server-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.progress{
+  width:100px;
+  height:6px;
+  background:#edf0f4;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress span{
+  display:block;
+  height:100%;
+  background:var(--primary);
+  border-radius:20px;
+}
+
+/* =========================
+   CHART
+========================= */
 
 .chart{
- height:190px;display:flex;align-items:flex-end;gap:7px;padding-top:15px
+  height:235px;
+  display:flex;
+  align-items:flex-end;
+  gap:8px;
+  padding:20px 5px 0;
+  border-bottom:1px solid #e8ecf2;
 }
+
 .bar{
- flex:1;border-radius:5px 5px 2px 2px;
- background:linear-gradient(to top,rgba(54,229,139,.15),var(--green));
- min-height:10px;opacity:.8;transition:.2s
-}
-.bar:hover{opacity:1;transform:translateY(-4px)}
-
-.toolbar{
- display:flex;gap:9px;align-items:center;justify-content:space-between;
- margin-bottom:13px;flex-wrap:wrap;
-}
-.search{
- background:var(--panel);border:1px solid var(--line);color:white;
- padding:11px 13px;border-radius:10px;outline:none;width:260px;
-}
-.action{
- border:1px solid var(--line);background:var(--panel2);
- color:white;padding:10px 13px;border-radius:10px;font-size:10px;
-}
-.action.green-btn{background:var(--green);color:#031009;border-color:var(--green);font-weight:900}
-
-.table-wrap{overflow:auto}
-table{width:100%;border-collapse:collapse;min-width:650px}
-th{
- color:#697485;font-size:9px;text-align:right;font-weight:700;
- padding:12px;border-bottom:1px solid var(--line)
-}
-td{
- padding:13px 12px;border-bottom:1px solid rgba(255,255,255,.05);
- font-size:10px;color:#cdd3dc
-}
-.badge{
- display:inline-flex;padding:5px 8px;border-radius:7px;font-size:8px;
-}
-.badge.green-b{background:rgba(54,229,139,.09);color:var(--green)}
-.badge.red-b{background:rgba(255,85,113,.09);color:var(--red)}
-.badge.blue-b{background:rgba(77,163,255,.09);color:var(--blue)}
-.actions{display:flex;gap:5px}
-.mini{
- border:1px solid var(--line);background:#111720;color:#aeb7c5;
- padding:6px 8px;border-radius:7px;font-size:9px
+  flex:1;
+  background:#dce7fa;
+  border:1px solid #c8d7f1;
+  border-bottom:0;
+  border-radius:3px 3px 0 0;
+  min-height:10px;
 }
 
-.settings{
- display:grid;grid-template-columns:repeat(2,1fr);gap:13px
+.bar:hover{
+  background:#b8cdf1;
 }
-.setting{
- display:flex;align-items:center;justify-content:space-between;
- padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05)
+
+.chart-labels{
+  display:flex;
+  gap:8px;
+  padding-top:8px;
 }
-.setting:last-child{border:0}
-.setting strong{display:block;font-size:11px}
-.setting small{display:block;color:var(--muted);font-size:8px;margin-top:4px}
-.toggle{
- width:42px;height:23px;background:#252d39;border-radius:30px;
- padding:3px;transition:.2s
+
+.chart-labels span{
+  flex:1;
+  text-align:center;
+  font-size:8px;
+  color:#8a94a5;
 }
-.toggle i{
- display:block;width:17px;height:17px;background:#778190;border-radius:50%;transition:.2s
+
+/* =========================
+   SETTINGS
+========================= */
+
+.settings-grid{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:18px;
 }
-.toggle.on{background:rgba(54,229,139,.25)}
-.toggle.on i{transform:translateX(-19px);background:var(--green)}
+
+.settings-menu{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:7px;
+  height:max-content;
+}
+
+.settings-menu button{
+  width:100%;
+  height:40px;
+  border:0;
+  background:transparent;
+  border-radius:4px;
+  text-align:right;
+  padding:0 11px;
+  font-family:inherit;
+  font-size:11px;
+  color:#606b7c;
+  cursor:pointer;
+}
+
+.settings-menu button.active{
+  background:#edf3ff;
+  color:var(--primary);
+  font-weight:800;
+}
+
+.settings-panel{
+  display:none;
+}
+
+.settings-panel.active{
+  display:block;
+}
+
+.field-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.field{
+  margin-bottom:16px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  display:block;
+  color:#5c6779;
+  font-size:10px;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  border:1px solid #d9dfe8;
+  background:#fff;
+  border-radius:5px;
+  min-height:40px;
+  padding:8px 11px;
+  font-family:inherit;
+  font-size:11px;
+  color:#273246;
+  outline:none;
+}
+
+.field textarea{
+  height:90px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:#87a6dd;
+}
+
+.switch-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:13px 0;
+  border-bottom:1px solid #edf0f4;
+}
+
+.switch-row:last-child{
+  border-bottom:0;
+}
+
+.switch-title{
+  font-size:11px;
+  font-weight:800;
+}
+
+.switch-desc{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:4px;
+}
+
+.switch{
+  width:40px;
+  height:22px;
+  border-radius:20px;
+  background:#d9dee7;
+  cursor:pointer;
+  position:relative;
+  transition:.2s;
+}
+
+.switch:after{
+  content:"";
+  position:absolute;
+  width:16px;
+  height:16px;
+  background:#fff;
+  border-radius:50%;
+  top:3px;
+  right:3px;
+  box-shadow:0 1px 3px rgba(0,0,0,.2);
+  transition:.2s;
+}
+
+.switch.on{
+  background:var(--primary);
+}
+
+.switch.on:after{
+  right:21px;
+}
+
+/* =========================
+   LOG
+========================= */
+
+.log{
+  display:flex;
+  gap:12px;
+  padding:13px 0;
+  border-bottom:1px solid #edf0f4;
+}
+
+.log:last-child{
+  border-bottom:0;
+}
+
+.log-icon{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#edf3ff;
+  color:var(--primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+}
+
+.log-title{
+  font-size:10px;
+  font-weight:800;
+}
+
+.log-meta{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:4px;
+}
+
+/* =========================
+   MODAL
+========================= */
 
 .modal{
- position:fixed;inset:0;background:rgba(0,0,0,.7);
- z-index:500;display:flex;align-items:center;justify-content:center;
- padding:20px;backdrop-filter:blur(8px)
+  position:fixed;
+  inset:0;
+  background:rgba(17,27,43,.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:5000;
+  padding:20px;
 }
+
+.modal.show{
+  display:flex;
+}
+
 .modal-box{
- width:100%;max-width:460px;background:#0d121a;
- border:1px solid var(--line);border-radius:18px;padding:22px;
- box-shadow:var(--shadow)
+  background:#fff;
+  width:500px;
+  max-width:100%;
+  border-radius:7px;
+  box-shadow:0 15px 50px rgba(0,0,0,.18);
+  overflow:hidden;
 }
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-.modal-head h3{font-size:15px}
+
+.modal-head{
+  height:55px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+
+.modal-title{
+  font-weight:800;
+  font-size:13px;
+}
+
 .close{
- border:0;background:transparent;color:#9da7b5;font-size:20px
+  width:30px;
+  height:30px;
+  border:0;
+  background:#f1f3f6;
+  border-radius:4px;
+  cursor:pointer;
 }
-.modal-actions{display:flex;gap:8px;margin-top:16px}
-.modal-actions button{flex:1}
+
+.modal-body{
+  padding:20px;
+}
+
+.modal-footer{
+  padding:14px 20px;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:flex-start;
+  gap:8px;
+}
+
+/* =========================
+   TOAST
+========================= */
 
 .toast{
- position:fixed;left:20px;bottom:20px;z-index:900;
- background:#101720;border:1px solid var(--line);
- color:white;padding:12px 16px;border-radius:11px;font-size:10px;
- box-shadow:var(--shadow);transform:translateY(20px);opacity:0;
- transition:.25s
+  position:fixed;
+  left:25px;
+  bottom:25px;
+  background:#172033;
+  color:#fff;
+  padding:12px 17px;
+  border-radius:5px;
+  box-shadow:0 5px 20px rgba(0,0,0,.15);
+  font-size:11px;
+  z-index:99999;
+  transform:translateY(80px);
+  opacity:0;
+  transition:.25s;
 }
-.toast.show{transform:translateY(0);opacity:1}
 
-@media(max-width:1050px){
- .stats{grid-template-columns:repeat(2,1fr)}
- .settings{grid-template-columns:1fr}
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
 }
-@media(max-width:850px){
- .sidebar{transform:translateX(100%);transition:.25s}
- .sidebar.open{transform:translateX(0)}
- .main{margin-right:0;padding:17px}
- .mobile-btn{display:block}
- .topbar{align-items:flex-start}
- .grid{grid-template-columns:1fr}
+
+/* =========================
+   MOBILE
+========================= */
+
+.mobile-menu{
+  display:none;
+  width:37px;
+  height:37px;
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:5px;
+  cursor:pointer;
 }
-@media(max-width:520px){
- .stats{grid-template-columns:1fr 1fr;gap:8px}
- .card{padding:14px}
- .stat-value{font-size:20px}
- .search{width:100%}
- .toolbar{display:grid;grid-template-columns:1fr}
- .toolbar>*{width:100%}
+
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  z-index:999;
+}
+
+@media(max-width:1100px){
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid-2{
+    grid-template-columns:1fr;
+  }
+
+  .settings-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:800px){
+
+  .sidebar{
+    right:-245px;
+    transition:.25s;
+  }
+
+  .sidebar.open{
+    right:0;
+  }
+
+  .overlay.open{
+    display:block;
+  }
+
+  .main{
+    margin-right:0;
+  }
+
+  .mobile-menu{
+    display:block;
+  }
+
+  .topbar{
+    padding:0 14px;
+  }
+
+  .admin-name,
+  .admin-role{
+    display:none;
+  }
+
+  .content{
+    padding:15px;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .stat-card{
+    padding:13px;
+  }
+
+  .stat-number{
+    font-size:19px;
+  }
+
+  .top-actions .top-btn{
+    display:none;
+  }
+
+  .field-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+}
+
+@media(max-width:500px){
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .section-head{
+    align-items:flex-start;
+    gap:10px;
+    flex-direction:column;
+  }
+
+  .login-box{
+    width:95%;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div class="login" id="login">
- <div class="login-box">
-  <div class="brand">
-   <h1>GURD<span>PANEL</span></h1>
-   <p>Advanced VPN Management Panel</p>
-  </div>
+<!-- =========================
+     LOGIN
+========================= -->
 
-  <div class="field">
-   <label>نام کاربری</label>
-   <input id="loginUser" value="admin" autocomplete="username">
-  </div>
+<div class="login-page" id="loginPage">
 
-  <div class="field">
-   <label>رمز عبور</label>
-   <input id="loginPass" type="password" placeholder="رمز عبور">
-  </div>
+  <div class="login-box">
 
-  <button class="primary" onclick="login()">ورود به پنل</button>
-  <div class="error" id="loginError"></div>
- </div>
-</div>
-
-<!-- SIDEBAR -->
-<aside class="sidebar" id="sidebar">
-
- <div class="logo">
-  <h2>GURD<span>PANEL</span></h2>
-  <small>VPN MANAGEMENT SYSTEM</small>
- </div>
-
- <div class="menu-title">اصلی</div>
- <div class="nav">
-  <button class="active" data-page="dashboard"><span class="ico">⌂</span>داشبورد</button>
-  <button data-page="users"><span class="ico">◉</span>کاربران</button>
-  <button data-page="configs"><span class="ico">⌘</span>کانفیگ‌ها</button>
-  <button data-page="servers"><span class="ico">▣</span>سرورها</button>
- </div>
-
- <div class="menu-title">سرویس</div>
- <div class="nav">
-  <button data-page="traffic"><span class="ico">⇅</span>مصرف ترافیک</button>
-  <button data-page="subscriptions"><span class="ico">▤</span>اشتراک‌ها</button>
- </div>
-
- <div class="menu-title">تنظیمات VPN</div>
- <div class="nav">
-  <button data-page="vpn"><span class="ico">⚡</span>تنظیمات VPN</button>
-  <button data-page="dns"><span class="ico">◈</span>DNS / NAT64</button>
-  <button data-page="proxy"><span class="ico">◌</span>Proxy / Clean IP</button>
-  <button data-page="fragment"><span class="ico">◇</span>Fragment</button>
-  <button data-page="warp"><span class="ico">⚡</span>Warp</button>
- </div>
-
- <div class="menu-title">سیستم</div>
- <div class="nav">
-  <button data-page="settings"><span class="ico">⚙</span>تنظیمات</button>
-  <button onclick="logout()"><span class="ico">↪</span>خروج</button>
- </div>
-</aside>
-
-<!-- MAIN -->
-<main class="main">
-
- <div class="topbar">
-  <button class="mobile-btn" onclick="toggleSidebar()">☰</button>
-
-  <div class="title">
-   <h1 id="pageTitle">داشبورد</h1>
-   <p id="pageDesc">مرکز مدیریت GURDPANEL</p>
-  </div>
-
-  <div class="top-right">
-   <div class="live"><i class="dot"></i> سیستم آنلاین</div>
-  </div>
- </div>
-
-
-<!-- DASHBOARD -->
-<section class="page active" id="dashboard">
-
- <div class="stats">
-
-  <div class="card">
-   <div class="stat-top">
-    <span class="stat-name">کاربران فعال</span>
-    <span class="stat-icon green">👤</span>
-   </div>
-   <div class="stat-value">128</div>
-   <div class="stat-sub">+12 این هفته</div>
-  </div>
-
-  <div class="card">
-   <div class="stat-top">
-    <span class="stat-name">اتصال آنلاین</span>
-    <span class="stat-icon blue">◉</span>
-   </div>
-   <div class="stat-value">47</div>
-   <div class="stat-sub">اتصال هم‌اکنون</div>
-  </div>
-
-  <div class="card">
-   <div class="stat-top">
-    <span class="stat-name">مصرف امروز</span>
-    <span class="stat-icon yellow">⇅</span>
-   </div>
-   <div class="stat-value">86.4 GB</div>
-   <div class="stat-sub">ترافیک مصرف‌شده</div>
-  </div>
-
-  <div class="card">
-   <div class="stat-top">
-    <span class="stat-name">آپ‌تایم</span>
-    <span class="stat-icon green">✓</span>
-   </div>
-   <div class="stat-value">99.9%</div>
-   <div class="stat-sub">وضعیت پایدار</div>
-  </div>
-
- </div>
-
- <div class="grid">
-
-  <div class="card">
-   <div class="card-head">
-    <h3>وضعیت سرورها</h3>
-    <span>LIVE</span>
-   </div>
-
-   <div class="server">
-    <div class="server-left">
-     <div class="server-icon">◈</div>
-     <div>
-      <div class="server-name">Cloudflare Worker</div>
-      <div class="server-ip">Main Worker</div>
-     </div>
+    <div class="login-head">
+      <div class="login-logo">GURDPANEL</div>
+      <div class="login-sub">سامانه مدیریت سرویس VPN</div>
     </div>
-    <div class="server-right">
-     <div class="online">● Online</div>
-     <div class="load"><i style="width:32%"></i></div>
+
+    <div class="login-body">
+
+      <div class="login-error" id="loginError">
+        نام کاربری یا رمز عبور اشتباه است.
+      </div>
+
+      <div class="form-group">
+        <label>نام کاربری</label>
+        <input
+          id="username"
+          class="input"
+          type="text"
+          placeholder="نام کاربری"
+          autocomplete="username"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>رمز عبور</label>
+        <input
+          id="password"
+          class="input"
+          type="password"
+          placeholder="رمز عبور"
+          autocomplete="current-password"
+        >
+      </div>
+
+      <button class="login-button" onclick="login()">
+        ورود به پنل
+      </button>
+
+      <div class="demo-login">
+        نسخه آزمایشی — admin / gurd123
+      </div>
+
     </div>
-   </div>
-
-   <div class="server">
-    <div class="server-left">
-     <div class="server-icon">◈</div>
-     <div>
-      <div class="server-name">Germany Node</div>
-      <div class="server-ip">DE • Primary</div>
-     </div>
-    </div>
-    <div class="server-right">
-     <div class="online">● Online</div>
-     <div class="load"><i style="width:58%"></i></div>
-    </div>
-   </div>
-
-   <div class="server">
-    <div class="server-left">
-     <div class="server-icon">◈</div>
-     <div>
-      <div class="server-name">Finland Node</div>
-      <div class="server-ip">FI • Backup</div>
-     </div>
-    </div>
-    <div class="server-right">
-     <div class="online">● Online</div>
-     <div class="load"><i style="width:21%"></i></div>
-    </div>
-   </div>
   </div>
 
-  <div class="card">
-   <div class="card-head">
-    <h3>فعالیت اخیر</h3>
-    <span>LIVE</span>
-   </div>
-
-   <div class="activity">
-    <div class="activity-icon">👤</div>
-    <div class="activity-text">
-     کاربر جدید اضافه شد
-     <div class="activity-time">۲ دقیقه پیش</div>
-    </div>
-   </div>
-
-   <div class="activity">
-    <div class="activity-icon">🔑</div>
-    <div class="activity-text">
-     کانفیگ جدید ایجاد شد
-     <div class="activity-time">۸ دقیقه پیش</div>
-    </div>
-   </div>
-
-   <div class="activity">
-    <div class="activity-icon">⚡</div>
-    <div class="activity-text">
-     Worker پاسخ موفق داد
-     <div class="activity-time">۱۴ دقیقه پیش</div>
-    </div>
-   </div>
-
-   <div class="activity">
-    <div class="activity-icon">✓</div>
-    <div class="activity-text">
-     سرویس پایدار است
-     <div class="activity-time">۲۳ دقیقه پیش</div>
-    </div>
-   </div>
-  </div>
-
- </div>
-
- <div class="card" style="margin-top:13px">
-  <div class="card-head">
-   <h3>مصرف ترافیک</h3>
-   <span>۲۴ ساعت گذشته</span>
-  </div>
-
-  <div class="chart">
-   <div class="bar" style="height:32%"></div>
-   <div class="bar" style="height:45%"></div>
-   <div class="bar" style="height:37%"></div>
-   <div class="bar" style="height:58%"></div>
-   <div class="bar" style="height:51%"></div>
-   <div class="bar" style="height:69%"></div>
-   <div class="bar" style="height:62%"></div>
-   <div class="bar" style="height:77%"></div>
-   <div class="bar" style="height:54%"></div>
-   <div class="bar" style="height:81%"></div>
-   <div class="bar" style="height:66%"></div>
-   <div class="bar" style="height:91%"></div>
-  </div>
- </div>
-
-</section>
-
-
-<!-- USERS -->
-<section class="page" id="users">
-
- <div class="toolbar">
-  <input class="search" placeholder="جستجوی کاربر..." oninput="searchTable(this,'usersTable')">
-  <button class="action green-btn" onclick="openModal('userModal')">+ کاربر جدید</button>
- </div>
-
- <div class="card table-wrap">
-  <table id="usersTable">
-   <thead>
-    <tr>
-     <th>کاربر</th>
-     <th>شناسه</th>
-     <th>مصرف</th>
-     <th>انقضا</th>
-     <th>وضعیت</th>
-     <th>عملیات</th>
-    </tr>
-   </thead>
-   <tbody>
-    <tr>
-     <td>Ali</td>
-     <td>USR-001</td>
-     <td>14.2 GB</td>
-     <td>1405/07/12</td>
-     <td><span class="badge green-b">فعال</span></td>
-     <td class="actions"><button class="mini" onclick="toast('اطلاعات کاربر')">مشاهده</button></td>
-    </tr>
-    <tr>
-     <td>Reza</td>
-     <td>USR-002</td>
-     <td>8.7 GB</td>
-     <td>1405/06/28</td>
-     <td><span class="badge green-b">فعال</span></td>
-     <td class="actions"><button class="mini">مشاهده</button></td>
-    </tr>
-    <tr>
-     <td>TestUser</td>
-     <td>USR-003</td>
-     <td>50 GB</td>
-     <td>1405/06/01</td>
-     <td><span class="badge red-b">منقضی</span></td>
-     <td class="actions"><button class="mini">تمدید</button></td>
-    </tr>
-   </tbody>
-  </table>
- </div>
-</section>
-
-
-<!-- CONFIGS -->
-<section class="page" id="configs">
-
- <div class="toolbar">
-  <input class="search" placeholder="جستجوی کانفیگ..." oninput="searchTable(this,'configTable')">
-  <button class="action green-btn" onclick="openModal('configModal')">+ ساخت کانفیگ</button>
- </div>
-
- <div class="card table-wrap">
-  <table id="configTable">
-   <thead>
-    <tr>
-     <th>نام</th>
-     <th>پروتکل</th>
-     <th>سرور</th>
-     <th>وضعیت</th>
-     <th>عملیات</th>
-    </tr>
-   </thead>
-   <tbody>
-    <tr>
-     <td>GURD-001</td>
-     <td>VLESS</td>
-     <td>Germany</td>
-     <td><span class="badge green-b">فعال</span></td>
-     <td><button class="mini" onclick="copyText('vless://GURD-001')">کپی</button></td>
-    </tr>
-    <tr>
-     <td>GURD-002</td>
-     <td>Trojan</td>
-     <td>Finland</td>
-     <td><span class="badge green-b">فعال</span></td>
-     <td><button class="mini" onclick="copyText('trojan://GURD-002')">کپی</button></td>
-    </tr>
-    <tr>
-     <td>GURD-003</td>
-     <td>WireGuard</td>
-     <td>Worker</td>
-     <td><span class="badge blue-b">آماده</span></td>
-     <td><button class="mini">جزئیات</button></td>
-    </tr>
-   </tbody>
-  </table>
- </div>
-</section>
-
-
-<!-- SERVERS -->
-<section class="page" id="servers">
-
- <div class="toolbar">
-  <div></div>
-  <button class="action green-btn" onclick="openModal('serverModal')">+ افزودن سرور</button>
- </div>
-
- <div class="grid">
-  <div class="card">
-   <div class="card-head"><h3>Cloudflare Worker</h3><span class="green">ONLINE</span></div>
-   <div class="server">
-    <div class="server-left">
-     <div class="server-icon">◈</div>
-     <div>
-      <div class="server-name">Main Worker</div>
-      <div class="server-ip">Cloudflare Edge</div>
-     </div>
-    </div>
-    <div class="online">● 32% Load</div>
-   </div>
-  </div>
-
-  <div class="card">
-   <div class="card-head"><h3>Germany</h3><span class="green">ONLINE</span></div>
-   <div class="server">
-    <div class="server-left">
-     <div class="server-icon">DE</div>
-     <div>
-      <div class="server-name">Germany Node</div>
-      <div class="server-ip">Primary Server</div>
-     </div>
-    </div>
-    <div class="online">● 58% Load</div>
-   </div>
-  </div>
-
-  <div class="card">
-   <div class="card-head"><h3>Finland</h3><span class="green">ONLINE</span></div>
-   <div class="server">
-    <div class="server-left">
-     <div class="server-icon">FI</div>
-     <div>
-      <div class="server-name">Finland Node</div>
-      <div class="server-ip">Backup Server</div>
-     </div>
-    </div>
-    <div class="online">● 21% Load</div>
-   </div>
-  </div>
- </div>
-</section>
-
-
-<!-- TRAFFIC -->
-<section class="page" id="traffic">
-
- <div class="stats">
-  <div class="card">
-   <div class="stat-name">مصرف امروز</div>
-   <div class="stat-value">86.4 GB</div>
-  </div>
-  <div class="card">
-   <div class="stat-name">مصرف این ماه</div>
-   <div class="stat-value">1.72 TB</div>
-  </div>
-  <div class="card">
-   <div class="stat-name">دانلود</div>
-   <div class="stat-value">1.24 TB</div>
-  </div>
-  <div class="card">
-   <div class="stat-name">آپلود</div>
-   <div class="stat-value">480 GB</div>
-  </div>
- </div>
-
- <div class="card" style="margin-top:13px">
-  <div class="card-head"><h3>نمودار مصرف</h3><span>LIVE DATA</span></div>
-  <div class="chart">
-   <div class="bar" style="height:22%"></div>
-   <div class="bar" style="height:35%"></div>
-   <div class="bar" style="height:48%"></div>
-   <div class="bar" style="height:30%"></div>
-   <div class="bar" style="height:62%"></div>
-   <div class="bar" style="height:75%"></div>
-   <div class="bar" style="height:58%"></div>
-   <div class="bar" style="height:82%"></div>
-   <div class="bar" style="height:68%"></div>
-   <div class="bar" style="height:92%"></div>
-  </div>
- </div>
-</section>
-
-
-<!-- SUBSCRIPTIONS -->
-<section class="page" id="subscriptions">
-
- <div class="toolbar">
-  <div></div>
-  <button class="action green-btn" onclick="openModal('planModal')">+ پلن جدید</button>
- </div>
-
- <div class="stats">
-
-  <div class="card">
-   <div class="stat-name">پلن‌های فعال</div>
-   <div class="stat-value">4</div>
-  </div>
-
-  <div class="card">
-   <div class="stat-name">اشتراک فعال</div>
-   <div class="stat-value">128</div>
-  </div>
-
-  <div class="card">
-   <div class="stat-name">تمدید امروز</div>
-   <div class="stat-value">17</div>
-  </div>
-
-  <div class="card">
-   <div class="stat-name">منقضی‌شده</div>
-   <div class="stat-value">9</div>
-  </div>
-
- </div>
-</section>
-
-
-<!-- VPN -->
-<section class="page" id="vpn">
-
- <div class="card">
-  <div class="card-head">
-   <h3>تنظیمات VPN</h3>
-   <span>BPB / Worker</span>
-  </div>
-
-  <div class="settings">
-
-   <div class="setting">
-    <div><strong>VLESS</strong><small>فعال‌سازی پروتکل VLESS</small></div>
-    <div class="toggle on" onclick="toggle(this)"><i></i></div>
-   </div>
-
-   <div class="setting">
-    <div><strong>Trojan</strong><small>فعال‌سازی Trojan</small></div>
-    <div class="toggle on" onclick="toggle(this)"><i></i></div>
-   </div>
-
-   <div class="setting">
-    <div><strong>WireGuard</strong><small>پشتیبانی WireGuard / WARP</small></div>
-    <div class="toggle on" onclick="toggle(this)"><i></i></div>
-   </div>
-
-   <div class="setting">
-    <div><strong>Auto Routing</strong><small>انتخاب مسیر بهینه</small></div>
-    <div class="toggle on" onclick="toggle(this)"><i></i></div>
-   </div>
-
-  </div>
- </div>
-</section>
-
-
-<!-- DNS -->
-<section class="page" id="dns">
-
- <div class="grid">
-
-  <div class="card">
-   <div class="card-head"><h3>DNS</h3><span>NETWORK</span></div>
-
-   <div class="field">
-    <label>Primary DNS</label>
-    <input value="1.1.1.1">
-   </div>
-
-   <div class="field">
-    <label>Secondary DNS</label>
-    <input value="1.0.0.1">
-   </div>
-
-   <button class="action green-btn" onclick="toast('تنظیمات DNS ذخیره شد')">ذخیره تنظیمات</button>
-  </div>
-
-  <div class="card">
-   <div class="card-head"><h3>NAT64</h3><span>IPv6 / IPv4</span></div>
-
-   <div class="setting">
-    <div><strong>NAT64</strong><small>فعال‌سازی NAT64</small></div>
-    <div class="toggle on" onclick="toggle(this)"><i></i></div>
-   </div>
-
-   <div class="field" style="margin-top:15px">
-    <label>NAT64 Prefix</label>
-    <input value="64:ff9b::">
-   </div>
-
-   <button class="action green-btn" onclick="toast('NAT64 ذخیره شد')">ذخیره</button>
-  </div>
-
- </div>
-</section>
-
-
-<!-- PROXY -->
-<section class="page" id="proxy">
-
- <div class="card">
-  <div class="card-head">
-   <h3>Proxy / Clean IP</h3>
-   <span>NETWORK OPTIMIZATION</span>
-  </div>
-
-  <div class="settings">
-   <div class="setting">
-    <div><strong>Proxy IP</strong><small>استفاده از Proxy IP</small></div>
-    <div class="toggle on" onclick="toggle(this)"><i></i></div>
-   </div>
-
-   <div class="setting">
-    <div><strong>Auto Clean IP</strong><small>انتخاب IP مناسب</small></div>
-    <div class="toggle on" onclick="toggle(this)"><i></i></div>
-   </div>
-
-   <div class="setting">
-    <div><strong>Health Check</strong><small>بررسی خودکار IP</small></div>
-    <div class="toggle on" onclick="toggle(this)"><i></i></div>
-   </div>
-  </div>
- </div>
-</section>
-
-
-<!-- FRAGMENT -->
-<section class="page" id="fragment">
-
- <div class="card">
-  <div class="card-head">
-   <h3>Fragment</h3>
-   <span>CONNECTION OPTIMIZATION</span>
-  </div>
-
-  <div class="field">
-   <label>Fragment Length</label>
-   <input value="10-20">
-  </div>
-
-  <div class="field">
-   <label>Interval</label>
-   <input value="10-20">
-  </div>
-
-  <div class="setting">
-   <div><strong>Fragment</strong><small>فعال‌سازی Fragment</small></div>
-   <div class="toggle on" onclick="toggle(this)"><i></i></div>
-  </div>
-
-  <button class="action green-btn" onclick="toast('تنظیمات Fragment ذخیره شد')">ذخیره</button>
- </div>
-</section>
-
-
-<!-- WARP -->
-<section class="page" id="warp">
-
- <div class="grid">
-
-  <div class="card">
-   <div class="card-head"><h3>WARP</h3><span>CLOUDFLARE</span></div>
-
-   <div class="setting">
-    <div><strong>WARP</strong><small>فعال‌سازی WARP</small></div>
-    <div class="toggle on" onclick="toggle(this)"><i></i></div>
-   </div>
-
-   <div class="field" style="margin-top:16px">
-    <label>WARP Mode</label>
-    <select>
-     <option>Auto</option>
-     <option>IPv4</option>
-     <option>IPv6</option>
-    </select>
-   </div>
-  </div>
-
-  <div class="card">
-   <div class="card-head"><h3>وضعیت WARP</h3><span class="green">CONNECTED</span></div>
-   <div class="stat-value green">● Connected</div>
-   <div class="stat-sub">Cloudflare WARP آماده است</div>
-  </div>
-
- </div>
-</section>
-
-
-<!-- SETTINGS -->
-<section class="page" id="settings">
-
- <div class="grid">
-
-  <div class="card">
-   <div class="card-head"><h3>امنیت</h3><span>SECURITY</span></div>
-
-   <div class="field">
-    <label>نام کاربری ادمین</label>
-    <input value="admin">
-   </div>
-
-   <div class="field">
-    <label>رمز عبور جدید</label>
-    <input type="password" placeholder="رمز جدید">
-   </div>
-
-   <button class="action green-btn" onclick="toast('تنظیمات امنیتی ذخیره شد')">ذخیره</button>
-  </div>
-
-  <div class="card">
-   <div class="card-head"><h3>Worker API</h3><span>API</span></div>
-
-   <div class="field">
-    <label>Worker URL</label>
-    <input placeholder="https://your-worker.workers.dev">
-   </div>
-
-   <div class="field">
-    <label>API Token</label>
-    <input type="password" placeholder="API Token">
-   </div>
-
-   <button class="action green-btn" onclick="toast('تنظیمات API ذخیره شد')">ذخیره API</button>
-  </div>
-
- </div>
-</section>
-
-</main>
-
-
-<!-- USER MODAL -->
-<div class="modal hidden" id="userModal">
- <div class="modal-box">
-  <div class="modal-head">
-   <h3>ساخت کاربر جدید</h3>
-   <button class="close" onclick="closeModal('userModal')">×</button>
-  </div>
-
-  <div class="field">
-   <label>نام کاربر</label>
-   <input id="newUser" placeholder="مثلاً Ali">
-  </div>
-
-  <div class="field">
-   <label>حجم</label>
-   <input placeholder="مثلاً 100GB">
-  </div>
-
-  <div class="field">
-   <label>مدت اشتراک</label>
-   <select>
-    <option>30 روز</option>
-    <option>60 روز</option>
-    <option>90 روز</option>
-   </select>
-  </div>
-
-  <div class="modal-actions">
-   <button class="action" onclick="closeModal('userModal')">لغو</button>
-   <button class="action green-btn" onclick="createUser()">ساخت کاربر</button>
-  </div>
- </div>
 </div>
 
 
-<!-- CONFIG MODAL -->
-<div class="modal hidden" id="configModal">
- <div class="modal-box">
-  <div class="modal-head">
-   <h3>ساخت کانفیگ</h3>
-   <button class="close" onclick="closeModal('configModal')">×</button>
-  </div>
+<!-- =========================
+     APP
+========================= -->
 
-  <div class="field">
-   <label>پروتکل</label>
-   <select>
-    <option>VLESS</option>
-    <option>Trojan</option>
-    <option>WireGuard</option>
-   </select>
-  </div>
+<div class="app" id="app">
 
-  <div class="field">
-   <label>سرور</label>
-   <select>
-    <option>Germany</option>
-    <option>Finland</option>
-    <option>Cloudflare Worker</option>
-   </select>
-  </div>
+  <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
 
-  <div class="modal-actions">
-   <button class="action" onclick="closeModal('configModal')">لغو</button>
-   <button class="action green-btn" onclick="createConfig()">ساخت کانفیگ</button>
-  </div>
- </div>
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+
+      <div class="brand-mark">
+        GP
+      </div>
+
+      <div>
+        <div class="brand-text">
+          GURDPANEL
+        </div>
+
+        <span class="brand-version">
+          VPN MANAGEMENT
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-title">
+      اصلی
+    </div>
+
+    <ul class="menu">
+
+      <li>
+        <button class="active" data-page="dashboard" onclick="showPage('dashboard',this)">
+          <span class="menu-icon">⌂</span>
+          داشبورد
+        </button>
+      </li>
+
+      <li>
+        <button data-page="users" onclick="showPage('users',this)">
+          <span class="menu-icon">♙</span>
+          کاربران
+        </button>
+      </li>
+
+      <li>
+        <button data-page="configs" onclick="showPage('configs',this)">
+          <span class="menu-icon">⌘</span>
+          کانفیگ‌ها
+        </button>
+      </li>
+
+      <li>
+        <button data-page="subscriptions" onclick="showPage('subscriptions',this)">
+          <span class="menu-icon">▣</span>
+          اشتراک‌ها
+        </button>
+      </li>
+
+    </ul>
+
+
+    <div class="menu-title">
+      زیرساخت
+    </div>
+
+    <ul class="menu">
+
+      <li>
+        <button data-page="servers" onclick="showPage('servers',this)">
+          <span class="menu-icon">▦</span>
+          سرورها
+        </button>
+      </li>
+
+      <li>
+        <button data-page="traffic" onclick="showPage('traffic',this)">
+          <span class="menu-icon">◫</span>
+          ترافیک
+        </button>
+      </li>
+
+      <li>
+        <button data-page="dns" onclick="showPage('dns',this)">
+          <span class="menu-icon">◈</span>
+          DNS / NAT64
+        </button>
+      </li>
+
+      <li>
+        <button data-page="proxy" onclick="showPage('proxy',this)">
+          <span class="menu-icon">⇄</span>
+          Proxy / Clean IP
+        </button>
+      </li>
+
+    </ul>
+
+
+    <div class="menu-title">
+      امکانات VPN
+    </div>
+
+    <ul class="menu">
+
+      <li>
+        <button data-page="fragment" onclick="showPage('fragment',this)">
+          <span class="menu-icon">◇</span>
+          Fragment
+        </button>
+      </li>
+
+      <li>
+        <button data-page="warp" onclick="showPage('warp',this)">
+          <span class="menu-icon">⚡</span>
+          WARP
+        </button>
+      </li>
+
+    </ul>
+
+
+    <div class="menu-title">
+      سیستم
+    </div>
+
+    <ul class="menu">
+
+      <li>
+        <button data-page="activity" onclick="showPage('activity',this)">
+          <span class="menu-icon">☷</span>
+          گزارش فعالیت
+        </button>
+      </li>
+
+      <li>
+        <button data-page="settings" onclick="showPage('settings',this)">
+          <span class="menu-icon">⚙</span>
+          تنظیمات
+        </button>
+      </li>
+
+    </ul>
+
+
+    <div class="sidebar-bottom">
+
+      <div class="server-mini">
+
+        <div class="server-mini-title">
+          وضعیت سرویس
+        </div>
+
+        <div class="online-line">
+          <span class="dot"></span>
+          تمام سرویس‌ها فعال هستند
+        </div>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div style="display:flex;align-items:center;gap:12px">
+
+        <button class="mobile-menu" onclick="openMobileMenu()">
+          ☰
+        </button>
+
+        <div>
+          <div class="page-title" id="pageTitle">
+            داشبورد
+          </div>
+
+          <div class="page-breadcrumb">
+            GURDPANEL / مدیریت سرویس
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="top-actions">
+
+        <button class="top-btn" onclick="refreshPanel()">
+          ↻ بروزرسانی
+        </button>
+
+        <button class="top-btn" onclick="openModal('notificationModal')">
+          ♧ اعلان‌ها
+        </button>
+
+        <div class="admin-user">
+
+          <div>
+            <div class="admin-name">
+              مدیر سیستم
+            </div>
+
+            <div class="admin-role">
+              Administrator
+            </div>
+          </div>
+
+          <div class="admin-avatar">
+            A
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <div class="content">
+
+
+      <!-- ================= DASHBOARD ================= -->
+
+      <section class="page active" id="page-dashboard">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              نمای کلی سیستم
+            </div>
+
+            <div class="section-desc">
+              وضعیت کلی کاربران، سرورها و سرویس VPN
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="openModal('configModal')">
+            + ساخت کانفیگ
+          </button>
+
+        </div>
+
+
+        <div class="stats">
+
+          <div class="stat-card">
+
+            <div class="stat-top">
+
+              <div>
+                <div class="stat-label">
+                  کاربران فعال
+                </div>
+
+                <div class="stat-number">
+                  1,284
+                </div>
+              </div>
+
+              <div class="stat-icon">
+                ♙
+              </div>
+
+            </div>
+
+            <div class="stat-footer">
+              <span class="up">▲ 8.4%</span>
+              نسبت به ماه گذشته
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-top">
+
+              <div>
+                <div class="stat-label">
+                  کانفیگ فعال
+                </div>
+
+                <div class="stat-number">
+                  3,942
+                </div>
+              </div>
+
+              <div class="stat-icon">
+                ⌘
+              </div>
+
+            </div>
+
+            <div class="stat-footer">
+              3,721 کانفیگ در حال استفاده
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-top">
+
+              <div>
+                <div class="stat-label">
+                  مصرف امروز
+                </div>
+
+                <div class="stat-number">
+                  428 GB
+                </div>
+              </div>
+
+              <div class="stat-icon">
+                ◫
+              </div>
+
+            </div>
+
+            <div class="stat-footer">
+              <span class="up">▲ 4.1%</span>
+              نسبت به دیروز
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-top">
+
+              <div>
+                <div class="stat-label">
+                  سرورهای آنلاین
+                </div>
+
+                <div class="stat-number">
+                  8 / 9
+                </div>
+              </div>
+
+              <div class="stat-icon">
+                ▦
+              </div>
+
+            </div>
+
+            <div class="stat-footer">
+              یک سرور نیاز به بررسی دارد
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="grid-2">
+
+          <div class="card">
+
+            <div class="card-header">
+
+              <div class="card-title">
+                وضعیت سرورها
+              </div>
+
+              <button class="btn btn-light" onclick="showPage('servers')">
+                مشاهده همه
+              </button>
+
+            </div>
+
+            <div class="card-body">
+
+              <div class="server-item">
+
+                <div>
+                  <div class="server-name">
+                    Germany 01
+                  </div>
+
+                  <div class="server-location">
+                    فرانکفورت
+                  </div>
+                </div>
+
+                <div class="server-right">
+                  <div class="progress">
+                    <span style="width:42%"></span>
+                  </div>
+
+                  <span class="badge badge-success">
+                    آنلاین
+                  </span>
+                </div>
+
+              </div>
+
+
+              <div class="server-item">
+
+                <div>
+                  <div class="server-name">
+                    Germany 02
+                  </div>
+
+                  <div class="server-location">
+                    نورنبرگ
+                  </div>
+                </div>
+
+                <div class="server-right">
+                  <div class="progress">
+                    <span style="width:61%"></span>
+                  </div>
+
+                  <span class="badge badge-success">
+                    آنلاین
+                  </span>
+                </div>
+
+              </div>
+
+
+              <div class="server-item">
+
+                <div>
+                  <div class="server-name">
+                    Finland 01
+                  </div>
+
+                  <div class="server-location">
+                    هلسینکی
+                  </div>
+                </div>
+
+                <div class="server-right">
+                  <div class="progress">
+                    <span style="width:29%"></span>
+                  </div>
+
+                  <span class="badge badge-success">
+                    آنلاین
+                  </span>
+                </div>
+
+              </div>
+
+
+              <div class="server-item">
+
+                <div>
+                  <div class="server-name">
+                    Germany 03
+                  </div>
+
+                  <div class="server-location">
+                    فرانکفورت
+                  </div>
+                </div>
+
+                <div class="server-right">
+                  <div class="progress">
+                    <span style="width:91%"></span>
+                  </div>
+
+                  <span class="badge badge-warning">
+                    فشار بالا
+                  </span>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="card-header">
+
+              <div class="card-title">
+                آخرین فعالیت‌ها
+              </div>
+
+              <button class="btn btn-light" onclick="showPage('activity')">
+                همه
+              </button>
+
+            </div>
+
+            <div class="card-body">
+
+              <div class="log">
+
+                <div class="log-icon">
+                  +
+                </div>
+
+                <div>
+                  <div class="log-title">
+                    کاربر جدید ایجاد شد
+                  </div>
+
+                  <div class="log-meta">
+                    admin · ۲ دقیقه قبل
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="log">
+
+                <div class="log-icon">
+                  ⌘
+                </div>
+
+                <div>
+                  <div class="log-title">
+                    کانفیگ جدید ساخته شد
+                  </div>
+
+                  <div class="log-meta">
+                    Germany 01 · ۸ دقیقه قبل
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="log">
+
+                <div class="log-icon">
+                  ⚙
+                </div>
+
+                <div>
+                  <div class="log-title">
+                    تنظیمات DNS تغییر کرد
+                  </div>
+
+                  <div class="log-meta">
+                    admin · ۲۲ دقیقه قبل
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="log">
+
+                <div class="log-icon">
+                  !
+                </div>
+
+                <div>
+                  <div class="log-title">
+                    مصرف بالای Germany 03
+                  </div>
+
+                  <div class="log-meta">
+                    سیستم · ۳۷ دقیقه قبل
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= USERS ================= -->
+
+      <section class="page" id="page-users">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              مدیریت کاربران
+            </div>
+
+            <div class="section-desc">
+              ایجاد، مدیریت و کنترل کاربران سرویس
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="openModal('userModal')">
+            + کاربر جدید
+          </button>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>کاربر</th>
+                <th>شناسه</th>
+                <th>پلن</th>
+                <th>مصرف</th>
+                <th>انقضا</th>
+                <th>وضعیت</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td><b>Ali</b></td>
+                <td>USR-1001</td>
+                <td>100GB</td>
+                <td>42.8GB</td>
+                <td>1405/07/21</td>
+                <td><span class="badge badge-success">فعال</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="icon-btn" onclick="toast('ویرایش کاربر')">✎</button>
+                    <button class="icon-btn" onclick="toast('جزئیات کاربر')">⌕</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><b>Reza</b></td>
+                <td>USR-1002</td>
+                <td>50GB</td>
+                <td>49.1GB</td>
+                <td>1405/07/12</td>
+                <td><span class="badge badge-warning">نزدیک انقضا</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="icon-btn">✎</button>
+                    <button class="icon-btn">⌕</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><b>Mohammad</b></td>
+                <td>USR-1003</td>
+                <td>Unlimited</td>
+                <td>128GB</td>
+                <td>1405/08/01</td>
+                <td><span class="badge badge-success">فعال</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="icon-btn">✎</button>
+                    <button class="icon-btn">⌕</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><b>Sina</b></td>
+                <td>USR-1004</td>
+                <td>20GB</td>
+                <td>20GB</td>
+                <td>1405/06/29</td>
+                <td><span class="badge badge-danger">منقضی</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="icon-btn">✎</button>
+                    <button class="icon-btn">⌕</button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= CONFIGS ================= -->
+
+      <section class="page" id="page-configs">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              مدیریت کانفیگ‌ها
+            </div>
+
+            <div class="section-desc">
+              مدیریت کانفیگ‌های VLESS، Trojan و WireGuard
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="openModal('configModal')">
+            + کانفیگ جدید
+          </button>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>نام کانفیگ</th>
+                <th>پروتکل</th>
+                <th>سرور</th>
+                <th>پورت</th>
+                <th>کاربر</th>
+                <th>وضعیت</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td><b>GURD-DE-01</b></td>
+                <td>VLESS</td>
+                <td>Germany 01</td>
+                <td>443</td>
+                <td>Ali</td>
+                <td><span class="badge badge-success">فعال</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="icon-btn" onclick="toast('لینک کانفیگ کپی شد')">⧉</button>
+                    <button class="icon-btn">✎</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><b>GURD-FI-02</b></td>
+                <td>VLESS</td>
+                <td>Finland 01</td>
+                <td>443</td>
+                <td>Reza</td>
+                <td><span class="badge badge-success">فعال</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="icon-btn">⧉</button>
+                    <button class="icon-btn">✎</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td><b>GURD-DE-03</b></td>
+                <td>Trojan</td>
+                <td>Germany 02</td>
+                <td>443</td>
+                <td>Mohammad</td>
+                <td><span class="badge badge-success">فعال</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="icon-btn">⧉</button>
+                    <button class="icon-btn">✎</button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= SUBSCRIPTIONS ================= -->
+
+      <section class="page" id="page-subscriptions">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              اشتراک‌ها
+            </div>
+
+            <div class="section-desc">
+              پلن‌های فروش و اشتراک کاربران
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" onclick="openModal('planModal')">
+            + پلن جدید
+          </button>
+
+        </div>
+
+
+        <div class="grid-3">
+
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">20GB</div>
+              <span class="badge badge-success">فعال</span>
+            </div>
+
+            <div class="card-body">
+
+              <div style="font-size:24px;font-weight:800">
+                40,000
+              </div>
+
+              <div style="font-size:9px;color:#8a94a5;margin-top:5px">
+                تومان
+              </div>
+
+              <hr style="border:0;border-top:1px solid #edf0f4;margin:17px 0">
+
+              <div style="font-size:10px;color:#687386;line-height:2.2">
+                حجم: 20GB<br>
+                مدت: 30 روز<br>
+                تعداد کاربر: 1
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">100GB</div>
+              <span class="badge badge-success">فعال</span>
+            </div>
+
+            <div class="card-body">
+
+              <div style="font-size:24px;font-weight:800">
+                250,000
+              </div>
+
+              <div style="font-size:9px;color:#8a94a5;margin-top:5px">
+                تومان
+              </div>
+
+              <hr style="border:0;border-top:1px solid #edf0f4;margin:17px 0">
+
+              <div style="font-size:10px;color:#687386;line-height:2.2">
+                حجم: 100GB<br>
+                مدت: 30 روز<br>
+                تعداد کاربر: 1
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">Unlimited</div>
+              <span class="badge badge-success">فعال</span>
+            </div>
+
+            <div class="card-body">
+
+              <div style="font-size:24px;font-weight:800">
+                99,000
+              </div>
+
+              <div style="font-size:9px;color:#8a94a5;margin-top:5px">
+                تومان / ماه
+              </div>
+
+              <hr style="border:0;border-top:1px solid #edf0f4;margin:17px 0">
+
+              <div style="font-size:10px;color:#687386;line-height:2.2">
+                حجم: نامحدود<br>
+                مدت: 30 روز<br>
+                تعداد کاربر: 1
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= SERVERS ================= -->
+
+      <section class="page" id="page-servers">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              سرورها
+            </div>
+
+            <div class="section-desc">
+              وضعیت و مدیریت سرورهای VPN
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" onclick="openModal('serverModal')">
+            + افزودن سرور
+          </button>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>سرور</th>
+                <th>موقعیت</th>
+                <th>IP</th>
+                <th>CPU</th>
+                <th>RAM</th>
+                <th>Uptime</th>
+                <th>وضعیت</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td><b>Germany 01</b></td>
+                <td>فرانکفورت</td>
+                <td>185.x.x.10</td>
+                <td>42%</td>
+                <td>51%</td>
+                <td>18d 04h</td>
+                <td><span class="badge badge-success">آنلاین</span></td>
+                <td><button class="icon-btn">⚙</button></td>
+              </tr>
+
+              <tr>
+                <td><b>Germany 02</b></td>
+                <td>نورنبرگ</td>
+                <td>185.x.x.11</td>
+                <td>61%</td>
+                <td>63%</td>
+                <td>24d 11h</td>
+                <td><span class="badge badge-success">آنلاین</span></td>
+                <td><button class="icon-btn">⚙</button></td>
+              </tr>
+
+              <tr>
+                <td><b>Finland 01</b></td>
+                <td>هلسینکی</td>
+                <td>95.x.x.21</td>
+                <td>29%</td>
+                <td>37%</td>
+                <td>11d 09h</td>
+                <td><span class="badge badge-success">آنلاین</span></td>
+                <td><button class="icon-btn">⚙</button></td>
+              </tr>
+
+              <tr>
+                <td><b>Germany 03</b></td>
+                <td>فرانکفورت</td>
+                <td>185.x.x.12</td>
+                <td>91%</td>
+                <td>87%</td>
+                <td>2d 04h</td>
+                <td><span class="badge badge-warning">فشار بالا</span></td>
+                <td><button class="icon-btn">⚙</button></td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= TRAFFIC ================= -->
+
+      <section class="page" id="page-traffic">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              گزارش ترافیک
+            </div>
+
+            <div class="section-desc">
+              مصرف پهنای باند سرویس
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-header">
+
+            <div class="card-title">
+              مصرف هفت روز اخیر
+            </div>
+
+            <span class="badge badge-gray">
+              GB
+            </span>
+
+          </div>
+
+          <div class="card-body">
+
+            <div class="chart">
+
+              <div class="bar" style="height:38%"></div>
+              <div class="bar" style="height:51%"></div>
+              <div class="bar" style="height:45%"></div>
+              <div class="bar" style="height:69%"></div>
+              <div class="bar" style="height:58%"></div>
+              <div class="bar" style="height:78%"></div>
+              <div class="bar" style="height:63%"></div>
+
+            </div>
+
+            <div class="chart-labels">
+              <span>شنبه</span>
+              <span>یکشنبه</span>
+              <span>دوشنبه</span>
+              <span>سه‌شنبه</span>
+              <span>چهارشنبه</span>
+              <span>پنجشنبه</span>
+              <span>جمعه</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= DNS ================= -->
+
+      <section class="page" id="page-dns">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              DNS / NAT64
+            </div>
+
+            <div class="section-desc">
+              مدیریت DNS، NAT64 و مسیرهای شبکه
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" onclick="saveSettings()">
+            ذخیره تنظیمات
+          </button>
+
+        </div>
+
+
+        <div class="grid-2">
+
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">
+                DNS
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <div class="field">
+                <label>Primary DNS</label>
+                <input class="input" value="1.1.1.1">
+              </div>
+
+              <div class="field">
+                <label>Secondary DNS</label>
+                <input class="input" value="1.0.0.1">
+              </div>
+
+              <div class="switch-row">
+                <div>
+                  <div class="switch-title">Private DNS</div>
+                  <div class="switch-desc">استفاده از DNS خصوصی</div>
+                </div>
+
+                <div class="switch on" onclick="toggleSwitch(this)"></div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">
+                NAT64 Prefixes
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <div class="field">
+                <label>Prefix 1</label>
+                <input class="input" value="2a02:898:146:64::">
+              </div>
+
+              <div class="field">
+                <label>Prefix 2</label>
+                <input class="input" value="2602:fc59:b0:64::">
+              </div>
+
+              <div class="field">
+                <label>Prefix 3</label>
+                <input class="input" value="2602:fc59:11:64::">
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= PROXY ================= -->
+
+      <section class="page" id="page-proxy">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              Proxy / Clean IP
+            </div>
+
+            <div class="section-desc">
+              مدیریت مسیرهای Proxy و IPهای قابل استفاده
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" onclick="toast('لیست IP بروزرسانی شد')">
+            بروزرسانی IP
+          </button>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>IP</th>
+                <th>موقعیت</th>
+                <th>Latency</th>
+                <th>Loss</th>
+                <th>وضعیت</th>
+                <th>آخرین بررسی</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>104.x.x.21</td>
+                <td>Germany</td>
+                <td>42ms</td>
+                <td>0%</td>
+                <td><span class="badge badge-success">مناسب</span></td>
+                <td>2 دقیقه قبل</td>
+              </tr>
+
+              <tr>
+                <td>104.x.x.22</td>
+                <td>Netherlands</td>
+                <td>51ms</td>
+                <td>0%</td>
+                <td><span class="badge badge-success">مناسب</span></td>
+                <td>3 دقیقه قبل</td>
+              </tr>
+
+              <tr>
+                <td>104.x.x.23</td>
+                <td>Finland</td>
+                <td>68ms</td>
+                <td>1%</td>
+                <td><span class="badge badge-warning">متوسط</span></td>
+                <td>4 دقیقه قبل</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= FRAGMENT ================= -->
+
+      <section class="page" id="page-fragment">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              Fragment
+            </div>
+
+            <div class="section-desc">
+              تنظیمات Fragment برای مسیرهای پشتیبانی‌شده
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" onclick="saveSettings()">
+            ذخیره
+          </button>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-body">
+
+            <div class="switch-row">
+
+              <div>
+                <div class="switch-title">
+                  فعال‌سازی Fragment
+                </div>
+
+                <div class="switch-desc">
+                  فعال کردن قابلیت Fragment روی کانفیگ‌های انتخاب‌شده
+                </div>
+              </div>
+
+              <div class="switch on" onclick="toggleSwitch(this)"></div>
+
+            </div>
+
+
+            <div class="field-grid" style="margin-top:20px">
+
+              <div class="field">
+                <label>Packets</label>
+                <input class="input" value="tlshello">
+              </div>
+
+              <div class="field">
+                <label>Length</label>
+                <input class="input" value="100-200">
+              </div>
+
+              <div class="field">
+                <label>Interval</label>
+                <input class="input" value="10-20">
+              </div>
+
+              <div class="field">
+                <label>Mode</label>
+
+                <select>
+                  <option>Random</option>
+                  <option>Fixed</option>
+                </select>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= WARP ================= -->
+
+      <section class="page" id="page-warp">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              WARP
+            </div>
+
+            <div class="section-desc">
+              مدیریت تنظیمات WARP و WireGuard
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" onclick="toast('تنظیمات WARP ذخیره شد')">
+            ذخیره
+          </button>
+
+        </div>
+
+
+        <div class="grid-2">
+
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">
+                وضعیت WARP
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <div class="switch-row">
+
+                <div>
+                  <div class="switch-title">
+                    WARP فعال
+                  </div>
+
+                  <div class="switch-desc">
+                    استفاده از WARP در مسیر انتخاب‌شده
+                  </div>
+                </div>
+
+                <div class="switch on" onclick="toggleSwitch(this)"></div>
+
+              </div>
+
+
+              <div class="switch-row">
+
+                <div>
+                  <div class="switch-title">
+                    Auto Route
+                  </div>
+
+                  <div class="switch-desc">
+                    انتخاب خودکار مسیر
+                  </div>
+                </div>
+
+                <div class="switch on" onclick="toggleSwitch(this)"></div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">
+                اطلاعات WireGuard
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <div class="field">
+                <label>Endpoint</label>
+                <input class="input" value="engage.cloudflareclient.com:2408">
+              </div>
+
+              <div class="field">
+                <label>MTU</label>
+                <input class="input" value="1280">
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= ACTIVITY ================= -->
+
+      <section class="page" id="page-activity">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              گزارش فعالیت
+            </div>
+
+            <div class="section-desc">
+              تاریخچه عملیات انجام‌شده در پنل
+            </div>
+
+          </div>
+
+          <button class="btn btn-light" onclick="toast('گزارش بروزرسانی شد')">
+            بروزرسانی
+          </button>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>زمان</th>
+                <th>کاربر</th>
+                <th>عملیات</th>
+                <th>IP</th>
+                <th>نتیجه</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>23:41</td>
+                <td>admin</td>
+                <td>ساخت کانفیگ جدید</td>
+                <td>185.x.x.x</td>
+                <td><span class="badge badge-success">موفق</span></td>
+              </tr>
+
+              <tr>
+                <td>23:26</td>
+                <td>admin</td>
+                <td>تغییر DNS</td>
+                <td>185.x.x.x</td>
+                <td><span class="badge badge-success">موفق</span></td>
+              </tr>
+
+              <tr>
+                <td>22:58</td>
+                <td>admin</td>
+                <td>ورود به پنل</td>
+                <td>185.x.x.x</td>
+                <td><span class="badge badge-success">موفق</span></td>
+              </tr>
+
+              <tr>
+                <td>22:41</td>
+                <td>system</td>
+                <td>بررسی سرورها</td>
+                <td>—</td>
+                <td><span class="badge badge-success">موفق</span></td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= SETTINGS ================= -->
+
+      <section class="page" id="page-settings">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">
+              تنظیمات سیستم
+            </div>
+
+            <div class="section-desc">
+              تنظیمات اصلی GURDPANEL
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="settings-grid">
+
+          <div class="settings-menu">
+
+            <button class="active" onclick="settingsTab('general',this)">
+              تنظیمات عمومی
+            </button>
+
+            <button onclick="settingsTab('vpn',this)">
+              تنظیمات VPN
+            </button>
+
+            <button onclick="settingsTab('security',this)">
+              امنیت
+            </button>
+
+            <button onclick="settingsTab('backup',this)">
+              پشتیبان‌گیری
+            </button>
+
+          </div>
+
+
+          <div>
+
+            <!-- GENERAL -->
+
+            <div class="settings-panel active" id="settings-general">
+
+              <div class="card">
+
+                <div class="card-header">
+                  <div class="card-title">
+                    تنظیمات عمومی
+                  </div>
+                </div>
+
+                <div class="card-body">
+
+                  <div class="field-grid">
+
+                    <div class="field">
+                      <label>نام پنل</label>
+                      <input class="input" value="GURDPANEL">
+                    </div>
+
+                    <div class="field">
+                      <label>زبان</label>
+
+                      <select>
+                        <option>فارسی</option>
+                        <option>English</option>
+                      </select>
+
+                    </div>
+
+                    <div class="field">
+                      <label>منطقه زمانی</label>
+
+                      <select>
+                        <option>Asia/Tehran</option>
+                        <option>Europe/Berlin</option>
+                        <option>UTC</option>
+                      </select>
+
+                    </div>
+
+                    <div class="field">
+                      <label>پورت پنل</label>
+                      <input class="input" value="2053">
+                    </div>
+
+                  </div>
+
+                  <button class="btn btn-primary" onclick="saveSettings()">
+                    ذخیره تغییرات
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- VPN -->
+
+            <div class="settings-panel" id="settings-vpn">
+
+              <div class="card">
+
+                <div class="card-header">
+                  <div class="card-title">
+                    تنظیمات VPN
+                  </div>
+                </div>
+
+                <div class="card-body">
+
+                  <div class="switch-row">
+
+                    <div>
+                      <div class="switch-title">
+                        VLESS
+                      </div>
+                      <div class="switch-desc">
+                        فعال بودن پروتکل VLESS
+                      </div>
+                    </div>
+
+                    <div class="switch on" onclick="toggleSwitch(this)"></div>
+
+                  </div>
+
+
+                  <div class="switch-row">
+
+                    <div>
+                      <div class="switch-title">
+                        Trojan
+                      </div>
+                      <div class="switch-desc">
+                        فعال بودن Trojan
+                      </div>
+                    </div>
+
+                    <div class="switch on" onclick="toggleSwitch(this)"></div>
+
+                  </div>
+
+
+                  <div class="switch-row">
+
+                    <div>
+                      <div class="switch-title">
+                        WireGuard
+                      </div>
+                      <div class="switch-desc">
+                        فعال بودن WireGuard
+                      </div>
+                    </div>
+
+                    <div class="switch on" onclick="toggleSwitch(this)"></div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- SECURITY -->
+
+            <div class="settings-panel" id="settings-security">
+
+              <div class="card">
+
+                <div class="card-header">
+                  <div class="card-title">
+                    امنیت
+                  </div>
+                </div>
+
+                <div class="card-body">
+
+                  <div class="field">
+                    <label>رمز عبور جدید</label>
+                    <input class="input" type="password">
+                  </div>
+
+                  <div class="field">
+                    <label>تکرار رمز عبور</label>
+                    <input class="input" type="password">
+                  </div>
+
+                  <div class="switch-row">
+
+                    <div>
+                      <div class="switch-title">
+                        ورود دو مرحله‌ای
+                      </div>
+
+                      <div class="switch-desc">
+                        افزایش امنیت حساب مدیر
+                      </div>
+
+                    </div>
+
+                    <div class="switch" onclick="toggleSwitch(this)"></div>
+
+                  </div>
+
+                  <br>
+
+                  <button class="btn btn-primary" onclick="saveSettings()">
+                    ذخیره
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- BACKUP -->
+
+            <div class="settings-panel" id="settings-backup">
+
+              <div class="card">
+
+                <div class="card-header">
+                  <div class="card-title">
+                    پشتیبان‌گیری
+                  </div>
+                </div>
+
+                <div class="card-body">
+
+                  <div class="switch-row">
+
+                    <div>
+                      <div class="switch-title">
+                        پشتیبان‌گیری خودکار
+                      </div>
+
+                      <div class="switch-desc">
+                        ایجاد Backup دوره‌ای از تنظیمات
+                      </div>
+                    </div>
+
+                    <div class="switch on" onclick="toggleSwitch(this)"></div>
+
+                  </div>
+
+                  <br>
+
+                  <button class="btn btn-primary" onclick="toast('Backup ایجاد شد')">
+                    ایجاد Backup
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
 </div>
 
 
-<!-- SERVER MODAL -->
-<div class="modal hidden" id="serverModal">
- <div class="modal-box">
-  <div class="modal-head">
-   <h3>افزودن سرور</h3>
-   <button class="close" onclick="closeModal('serverModal')">×</button>
+<!-- =========================
+     USER MODAL
+========================= -->
+
+<div class="modal" id="userModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <div class="modal-title">
+        ایجاد کاربر جدید
+      </div>
+
+      <button class="close" onclick="closeModal('userModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="field">
+        <label>نام کاربر</label>
+        <input class="input" placeholder="مثلاً Ali">
+      </div>
+
+      <div class="field">
+        <label>پلن</label>
+
+        <select class="input">
+          <option>20GB</option>
+          <option>50GB</option>
+          <option>100GB</option>
+          <option>Unlimited</option>
+        </select>
+
+      </div>
+
+      <div class="field">
+        <label>مدت</label>
+
+        <select class="input">
+          <option>30 روز</option>
+          <option>60 روز</option>
+          <option>90 روز</option>
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button class="btn btn-primary" onclick="createItem('کاربر');closeModal('userModal')">
+        ایجاد
+      </button>
+
+      <button class="btn btn-light" onclick="closeModal('userModal')">
+        انصراف
+      </button>
+
+    </div>
+
   </div>
 
-  <div class="field">
-   <label>نام سرور</label>
-   <input placeholder="Germany Node">
-  </div>
-
-  <div class="field">
-   <label>آدرس</label>
-   <input placeholder="IP / Domain">
-  </div>
-
-  <div class="modal-actions">
-   <button class="action" onclick="closeModal('serverModal')">لغو</button>
-   <button class="action green-btn" onclick="closeModal('serverModal');toast('سرور اضافه شد')">افزودن</button>
-  </div>
- </div>
 </div>
 
 
-<!-- PLAN MODAL -->
-<div class="modal hidden" id="planModal">
- <div class="modal-box">
-  <div class="modal-head">
-   <h3>ساخت پلن</h3>
-   <button class="close" onclick="closeModal('planModal')">×</button>
+<!-- =========================
+     CONFIG MODAL
+========================= -->
+
+<div class="modal" id="configModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <div class="modal-title">
+        ایجاد کانفیگ
+      </div>
+
+      <button class="close" onclick="closeModal('configModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="field">
+        <label>نام کانفیگ</label>
+        <input class="input" placeholder="GURD-DE-01">
+      </div>
+
+      <div class="field">
+        <label>پروتکل</label>
+
+        <select class="input">
+          <option>VLESS</option>
+          <option>Trojan</option>
+          <option>WireGuard</option>
+        </select>
+
+      </div>
+
+      <div class="field">
+        <label>سرور</label>
+
+        <select class="input">
+          <option>Germany 01</option>
+          <option>Germany 02</option>
+          <option>Finland 01</option>
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button class="btn btn-primary" onclick="createItem('کانفیگ');closeModal('configModal')">
+        ایجاد کانفیگ
+      </button>
+
+      <button class="btn btn-light" onclick="closeModal('configModal')">
+        انصراف
+      </button>
+
+    </div>
+
   </div>
 
-  <div class="field">
-   <label>نام پلن</label>
-   <input placeholder="Premium">
+</div>
+
+
+<!-- =========================
+     SERVER MODAL
+========================= -->
+
+<div class="modal" id="serverModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <div class="modal-title">
+        افزودن سرور
+      </div>
+
+      <button class="close" onclick="closeModal('serverModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="field">
+        <label>نام سرور</label>
+        <input class="input" placeholder="Germany 04">
+      </div>
+
+      <div class="field">
+        <label>IP Address</label>
+        <input class="input" placeholder="1.2.3.4">
+      </div>
+
+      <div class="field">
+        <label>پورت SSH</label>
+        <input class="input" value="22">
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button class="btn btn-primary" onclick="createItem('سرور');closeModal('serverModal')">
+        افزودن
+      </button>
+
+      <button class="btn btn-light" onclick="closeModal('serverModal')">
+        انصراف
+      </button>
+
+    </div>
+
   </div>
 
-  <div class="field">
-   <label>حجم</label>
-   <input placeholder="100GB">
+</div>
+
+
+<!-- =========================
+     PLAN MODAL
+========================= -->
+
+<div class="modal" id="planModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <div class="modal-title">
+        ایجاد پلن
+      </div>
+
+      <button class="close" onclick="closeModal('planModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="field">
+        <label>نام پلن</label>
+        <input class="input" placeholder="مثلاً 200GB">
+      </div>
+
+      <div class="field">
+        <label>حجم</label>
+        <input class="input" placeholder="200GB">
+      </div>
+
+      <div class="field">
+        <label>قیمت</label>
+        <input class="input" placeholder="500000">
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button class="btn btn-primary" onclick="createItem('پلن');closeModal('planModal')">
+        ایجاد
+      </button>
+
+      <button class="btn btn-light" onclick="closeModal('planModal')">
+        انصراف
+      </button>
+
+    </div>
+
   </div>
 
-  <div class="field">
-   <label>مدت</label>
-   <input placeholder="30 روز">
+</div>
+
+
+<!-- =========================
+     NOTIFICATION MODAL
+========================= -->
+
+<div class="modal" id="notificationModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <div class="modal-title">
+        اعلان‌ها
+      </div>
+
+      <button class="close" onclick="closeModal('notificationModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="log">
+
+        <div class="log-icon">
+          !
+        </div>
+
+        <div>
+          <div class="log-title">
+            مصرف Germany 03 بالا است
+          </div>
+
+          <div class="log-meta">
+            ۳۷ دقیقه قبل
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="log">
+
+        <div class="log-icon">
+          ✓
+        </div>
+
+        <div>
+          <div class="log-title">
+            تمام سرویس‌ها در دسترس هستند
+          </div>
+
+          <div class="log-meta">
+            ۱ ساعت قبل
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="modal-actions">
-   <button class="action" onclick="closeModal('planModal')">لغو</button>
-   <button class="action green-btn" onclick="closeModal('planModal');toast('پلن ایجاد شد')">ساخت پلن</button>
-  </div>
- </div>
 </div>
 
 
@@ -1100,89 +3314,148 @@ td{
 <script>
 
 /* =========================
-   AUTH
+   LOGIN
 ========================= */
 
 function login(){
 
- const user=document.getElementById("loginUser").value.trim();
- const pass=document.getElementById("loginPass").value;
- const error=document.getElementById("loginError");
+  const username =
+    document.getElementById("username").value.trim();
 
- if(user==="admin" && pass==="gurd123"){
+  const password =
+    document.getElementById("password").value;
 
-   localStorage.setItem("gurd_auth","1");
-   document.getElementById("login").classList.add("hidden");
-   error.textContent="";
+  const error =
+    document.getElementById("loginError");
 
- }else{
+  if(username === "admin" && password === "gurd123"){
 
-   error.textContent="نام کاربری یا رمز عبور اشتباه است.";
+    localStorage.setItem("gurdpanel_auth","1");
 
- }
+    document.getElementById("loginPage").style.display="none";
+
+    document.getElementById("app").style.display="block";
+
+  }else{
+
+    error.style.display="block";
+
+  }
 
 }
 
-function logout(){
 
- localStorage.removeItem("gurd_auth");
+document.addEventListener("keydown",function(e){
 
- document.getElementById("login").classList.remove("hidden");
+  if(e.key === "Enter"){
 
-}
+    const loginPage =
+      document.getElementById("loginPage");
 
+    if(loginPage.style.display !== "none"){
 
-/* =========================
-   NAVIGATION
-========================= */
+      login();
 
-const pageNames={
- dashboard:["داشبورد","مرکز مدیریت GURDPANEL"],
- users:["کاربران","مدیریت کاربران سرویس"],
- configs:["کانفیگ‌ها","مدیریت کانفیگ‌های VPN"],
- servers:["سرورها","مدیریت Node و Worker"],
- traffic:["مصرف ترافیک","آمار مصرف سرویس"],
- subscriptions:["اشتراک‌ها","مدیریت پلن‌ها و اشتراک‌ها"],
- vpn:["تنظیمات VPN","تنظیمات اصلی سرویس"],
- dns:["DNS / NAT64","تنظیمات DNS و NAT64"],
- proxy:["Proxy / Clean IP","مدیریت Proxy و IP"],
- fragment:["Fragment","تنظیمات Fragment"],
- warp:["Warp","مدیریت Cloudflare WARP"],
- settings:["تنظیمات","تنظیمات سیستم و API"]
-};
+    }
 
-document.querySelectorAll(".nav button[data-page]").forEach(btn=>{
-
- btn.addEventListener("click",()=>{
-
-   const page=btn.dataset.page;
-
-   document.querySelectorAll(".nav button")
-     .forEach(x=>x.classList.remove("active"));
-
-   btn.classList.add("active");
-
-   document.querySelectorAll(".page")
-     .forEach(x=>x.classList.remove("active"));
-
-   document.getElementById(page).classList.add("active");
-
-   document.getElementById("pageTitle").textContent=pageNames[page][0];
-   document.getElementById("pageDesc").textContent=pageNames[page][1];
-
-   document.getElementById("sidebar").classList.remove("open");
-
- });
+  }
 
 });
 
 
 /* =========================
-   MOBILE
+   AUTH CHECK
 ========================= */
 
-function toggleSidebar(){
- document.getElementById("sidebar").classList.toggle("open");
+window.addEventListener("load",function(){
+
+  if(localStorage.getItem("gurdpanel_auth")==="1"){
+
+    document.getElementById("loginPage").style.display="none";
+
+    document.getElementById("app").style.display="block";
+
+  }
+
+});
+
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+const pageTitles={
+
+  dashboard:"داشبورد",
+  users:"مدیریت کاربران",
+  configs:"مدیریت کانفیگ‌ها",
+  subscriptions:"اشتراک‌ها",
+  servers:"سرورها",
+  traffic:"گزارش ترافیک",
+  dns:"DNS / NAT64",
+  proxy:"Proxy / Clean IP",
+  fragment:"Fragment",
+  warp:"WARP",
+  activity:"گزارش فعالیت",
+  settings:"تنظیمات"
+
+};
+
+
+function showPage(page,button){
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  const target =
+    document.getElementById("page-"+page);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll(".menu button")
+    .forEach(b=>b.classList.remove("active"));
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  document.getElementById("pageTitle").textContent =
+    pageTitles[page] || "GURDPANEL";
+
+  closeMobileMenu();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function openMobileMenu(){
+
+  document.getElementById("sidebar")
+    .classList.add("open");
+
+  document.getElementById("overlay")
+    .classList.add("open");
+
+}
+
+function closeMobileMenu(){
+
+  document.getElementById("sidebar")
+    .classList.remove("open");
+
+  document.getElementById("overlay")
+    .classList.remove("open");
+
 }
 
 
@@ -1191,11 +3464,17 @@ function toggleSidebar(){
 ========================= */
 
 function openModal(id){
- document.getElementById(id).classList.remove("hidden");
+
+  document.getElementById(id)
+    .classList.add("show");
+
 }
 
 function closeModal(id){
- document.getElementById(id).classList.add("hidden");
+
+  document.getElementById(id)
+    .classList.remove("show");
+
 }
 
 
@@ -1207,110 +3486,137 @@ let toastTimer;
 
 function toast(message){
 
- const box=document.getElementById("toast");
+  const el =
+    document.getElementById("toast");
 
- box.textContent=message;
- box.classList.add("show");
+  el.textContent=message;
 
- clearTimeout(toastTimer);
+  el.classList.add("show");
 
- toastTimer=setTimeout(()=>{
-   box.classList.remove("show");
- },2500);
+  clearTimeout(toastTimer);
 
-}
+  toastTimer=setTimeout(function(){
 
+    el.classList.remove("show");
 
-/* =========================
-   TOGGLES
-========================= */
-
-function toggle(el){
- el.classList.toggle("on");
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-function searchTable(input,id){
-
- const query=input.value.toLowerCase();
-
- document
-   .getElementById(id)
-   .querySelectorAll("tbody tr")
-   .forEach(row=>{
-
-      row.style.display=
-       row.innerText.toLowerCase().includes(query)
-       ? ""
-       : "none";
-
-   });
+  },2500);
 
 }
 
 
 /* =========================
-   CREATE USER
+   SWITCH
 ========================= */
 
-function createUser(){
+function toggleSwitch(el){
 
- const name=document.getElementById("newUser").value.trim();
-
- if(!name){
-
-   toast("نام کاربر را وارد کنید");
-   return;
-
- }
-
- closeModal("userModal");
-
- toast("کاربر "+name+" ایجاد شد");
+  el.classList.toggle("on");
 
 }
 
 
 /* =========================
-   CREATE CONFIG
+   SETTINGS
 ========================= */
 
-function createConfig(){
+function settingsTab(name,button){
 
- closeModal("configModal");
+  document.querySelectorAll(".settings-panel")
+    .forEach(p=>p.classList.remove("active"));
 
- toast("کانفیگ جدید ایجاد شد");
+  const panel =
+    document.getElementById("settings-"+name);
+
+  if(panel){
+    panel.classList.add("active");
+  }
+
+  document.querySelectorAll(".settings-menu button")
+    .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
 
 }
 
 
 /* =========================
-   COPY
+   SAVE
 ========================= */
 
-function copyText(text){
+function saveSettings(){
 
- navigator.clipboard.writeText(text)
-   .then(()=>toast("کپی شد"));
+  toast("تنظیمات با موفقیت ذخیره شد");
 
 }
 
 
 /* =========================
-   INIT
+   CREATE
 ========================= */
 
-window.addEventListener("load",()=>{
+function createItem(type){
 
- if(localStorage.getItem("gurd_auth")==="1"){
+  toast(type+" با موفقیت ایجاد شد");
 
-   document.getElementById("login").classList.add("hidden");
+}
 
- }
+
+/* =========================
+   REFRESH
+========================= */
+
+function refreshPanel(){
+
+  toast("پنل بروزرسانی شد");
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+  localStorage.removeItem("gurdpanel_auth");
+
+  location.reload();
+
+}
+
+
+/* =========================
+   CLOSE MODAL WITH ESC
+========================= */
+
+document.addEventListener("keydown",function(e){
+
+  if(e.key==="Escape"){
+
+    document.querySelectorAll(".modal.show")
+      .forEach(m=>m.classList.remove("show"));
+
+  }
+
+});
+
+
+/* =========================
+   CLOSE OUTSIDE MODAL
+========================= */
+
+document.querySelectorAll(".modal")
+.forEach(function(modal){
+
+  modal.addEventListener("click",function(e){
+
+    if(e.target===modal){
+
+      modal.classList.remove("show");
+
+    }
+
+  });
 
 });
 
