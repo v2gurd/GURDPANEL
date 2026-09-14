@@ -3,1424 +3,551 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#172033">
-<title>GURDPANEL | پنل مدیریت</title>
+<meta name="theme-color" content="#0f172a">
+<title>GURDPANEL</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
+*{box-sizing:border-box}
 :root{
-  --primary:#1956c9;
-  --primary-dark:#123d91;
-  --navy:#172033;
-  --navy2:#202b40;
-  --bg:#f4f6f9;
-  --card:#ffffff;
-  --border:#e1e6ee;
+  --bg:#f4f6f8;
+  --card:#fff;
   --text:#172033;
-  --muted:#778196;
-  --success:#17864b;
-  --success-bg:#e9f7ef;
-  --danger:#c93434;
-  --danger-bg:#fcecec;
-  --warning:#b77900;
-  --warning-bg:#fff5dc;
-  --shadow:0 2px 10px rgba(20,35,60,.06);
+  --muted:#718096;
+  --line:#e5e9ef;
+  --navy:#0f172a;
+  --blue:#2563eb;
+  --blue2:#1d4ed8;
+  --green:#16a34a;
+  --red:#dc2626;
+  --orange:#d97706;
+  --shadow:0 8px 30px rgba(15,23,42,.07);
 }
-
-html,body{
-  min-height:100%;
-}
-
 body{
-  font-family:
-    Tahoma,
-    "Segoe UI",
-    Arial,
-    sans-serif;
+  margin:0;
   background:var(--bg);
   color:var(--text);
-  font-size:14px;
+  font-family:Tahoma,"Segoe UI",sans-serif;
 }
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
 
-/* =========================
-   LOGIN
-========================= */
-
+/* LOGIN */
 .login-page{
-  position:fixed;
-  inset:0;
-  background:#eef2f7;
+  min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  z-index:9999;
+  padding:20px;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(37,99,235,.08),transparent 30%),
+    radial-gradient(circle at 80% 80%,rgba(15,23,42,.08),transparent 30%),
+    #f5f7fa;
 }
-
 .login-box{
-  width:410px;
-  max-width:92%;
-  background:#fff;
-  border:1px solid var(--border);
-  box-shadow:0 8px 35px rgba(20,35,60,.10);
-  border-radius:7px;
-  overflow:hidden;
-}
-
-.login-head{
-  background:var(--navy);
-  color:#fff;
-  padding:27px 30px;
-  text-align:center;
-}
-
-.login-logo{
-  font-size:25px;
-  font-weight:800;
-  letter-spacing:.5px;
-}
-
-.login-sub{
-  margin-top:8px;
-  color:#c9d2e2;
-  font-size:12px;
-}
-
-.login-body{
-  padding:28px;
-}
-
-.form-group{
-  margin-bottom:17px;
-}
-
-.form-group label{
-  display:block;
-  margin-bottom:7px;
-  color:#4f5a6d;
-  font-size:13px;
-  font-weight:700;
-}
-
-.input{
   width:100%;
-  height:44px;
-  border:1px solid #d7dde7;
-  border-radius:5px;
-  padding:0 13px;
-  outline:none;
+  max-width:420px;
   background:#fff;
-  color:var(--text);
-  font-family:inherit;
-  transition:.15s;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:35px;
+  box-shadow:0 20px 60px rgba(15,23,42,.12);
 }
-
-.input:focus{
-  border-color:#7da0dc;
-  box-shadow:0 0 0 3px rgba(25,86,201,.08);
-}
-
-.login-button{
-  width:100%;
-  height:45px;
-  border:0;
-  border-radius:5px;
-  background:var(--primary);
-  color:#fff;
-  font-family:inherit;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.login-button:hover{
-  background:var(--primary-dark);
-}
-
-.login-error{
-  display:none;
-  background:var(--danger-bg);
-  color:var(--danger);
-  border:1px solid #f1caca;
-  padding:10px;
-  border-radius:5px;
-  margin-bottom:15px;
-  text-align:center;
-  font-size:12px;
-}
-
-.demo-login{
-  margin-top:18px;
-  padding-top:16px;
-  border-top:1px solid var(--border);
-  color:var(--muted);
-  font-size:11px;
-  text-align:center;
-}
-
-/* =========================
-   APP
-========================= */
-
-.app{
-  display:none;
-  min-height:100vh;
-}
-
-/* =========================
-   SIDEBAR
-========================= */
-
-.sidebar{
-  position:fixed;
-  top:0;
-  right:0;
-  bottom:0;
-  width:245px;
-  background:var(--navy);
-  color:#fff;
-  z-index:1000;
-  overflow-y:auto;
-  border-left:1px solid #29354a;
-}
-
 .brand{
-  height:70px;
   display:flex;
   align-items:center;
-  padding:0 21px;
-  border-bottom:1px solid rgba(255,255,255,.08);
+  gap:12px;
+  margin-bottom:28px;
+}
+.brand-icon{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:var(--navy);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:20px;
+}
+.brand h1{
+  font-size:22px;
+  margin:0;
+}
+.brand p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:12px;
+}
+.login-title{
+  font-size:18px;
+  margin:0 0 7px;
+}
+.login-sub{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:24px;
+}
+.field{margin-bottom:16px}
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+.field input,.field select,.field textarea{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px 13px;
+  outline:none;
+  background:#fff;
+  transition:.2s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(37,99,235,.08);
+}
+.login-btn{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:13px;
+  background:var(--navy);
+  color:#fff;
+  font-weight:bold;
+}
+.login-btn:hover{background:#17233a}
+.note{
+  margin-top:15px;
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.8;
+}
+.error{
+  background:#fef2f2;
+  border:1px solid #fecaca;
+  color:#b91c1c;
+  padding:10px;
+  border-radius:9px;
+  font-size:12px;
+  margin-bottom:15px;
 }
 
-.brand-mark{
-  width:36px;
-  height:36px;
-  border-radius:5px;
+/* APP */
+.app{min-height:100vh}
+.sidebar{
+  position:fixed;
+  right:0;
+  top:0;
+  bottom:0;
+  width:255px;
+  background:var(--navy);
+  color:#fff;
+  padding:20px 14px;
+  z-index:50;
+  overflow-y:auto;
+}
+.side-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 10px 22px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.side-logo{
+  width:40px;
+  height:40px;
+  border-radius:10px;
   background:#fff;
   color:var(--navy);
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:900;
-  font-size:13px;
-  margin-left:10px;
 }
-
-.brand-text{
-  font-size:18px;
-  font-weight:800;
-}
-
-.brand-version{
+.side-brand strong{font-size:17px}
+.side-brand small{
   display:block;
-  font-size:9px;
-  color:#9eabc0;
-  margin-top:2px;
-  font-weight:normal;
+  color:#94a3b8;
+  margin-top:3px;
 }
-
 .menu-title{
-  padding:19px 20px 8px;
-  color:#7f8ca3;
+  color:#64748b;
   font-size:10px;
   font-weight:bold;
+  margin:22px 10px 8px;
 }
-
-.menu{
-  list-style:none;
-}
-
-.menu li{
-  padding:0 10px;
-}
-
-.menu button{
+.nav-btn{
   width:100%;
   border:0;
   background:transparent;
-  color:#c8d0dd;
-  height:43px;
-  border-radius:5px;
-  display:flex;
-  align-items:center;
-  gap:11px;
-  padding:0 12px;
-  cursor:pointer;
-  font-family:inherit;
-  font-size:12px;
+  color:#cbd5e1;
   text-align:right;
+  padding:11px 12px;
+  border-radius:9px;
+  margin-bottom:3px;
 }
-
-.menu button:hover{
-  background:#202b40;
+.nav-btn:hover,.nav-btn.active{
+  background:#1e293b;
   color:#fff;
 }
-
-.menu button.active{
-  background:#2555a5;
-  color:#fff;
-}
-
-.menu-icon{
-  width:21px;
-  text-align:center;
-  font-size:15px;
-}
-
-.sidebar-bottom{
-  padding:17px;
-  margin-top:15px;
-  border-top:1px solid rgba(255,255,255,.07);
-}
-
-.server-mini{
-  background:#202b40;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:5px;
-  padding:12px;
-}
-
-.server-mini-title{
-  font-size:11px;
-  color:#cbd3df;
-  margin-bottom:9px;
-}
-
-.online-line{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  color:#b9c6d9;
-  font-size:10px;
-}
-
-.dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#22a15c;
-}
-
-/* =========================
-   MAIN
-========================= */
-
 .main{
-  margin-right:245px;
+  margin-right:255px;
   min-height:100vh;
 }
-
 .topbar{
   height:70px;
   background:#fff;
-  border-bottom:1px solid var(--border);
+  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 27px;
+  padding:0 28px;
   position:sticky;
   top:0;
-  z-index:900;
+  z-index:30;
 }
-
-.page-title{
+.top-title{
   font-size:17px;
-  font-weight:800;
+  font-weight:bold;
 }
-
-.page-breadcrumb{
-  color:var(--muted);
-  font-size:10px;
-  margin-top:4px;
-}
-
-.top-actions{
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
-
-.top-btn{
-  height:37px;
-  padding:0 12px;
-  border:1px solid var(--border);
-  background:#fff;
-  color:#566174;
-  border-radius:5px;
-  cursor:pointer;
-  font-family:inherit;
-  font-size:11px;
-}
-
-.top-btn:hover{
-  background:#f6f8fb;
-}
-
-.admin-user{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding-right:9px;
-  border-right:1px solid var(--border);
-  margin-right:2px;
-}
-
-.admin-avatar{
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  background:#e9eef8;
-  color:var(--primary);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:800;
-}
-
-.admin-name{
-  font-size:11px;
-  font-weight:700;
-}
-
-.admin-role{
-  font-size:9px;
-  color:var(--muted);
-  margin-top:3px;
-}
-
-/* =========================
-   CONTENT
-========================= */
-
-.content{
-  padding:25px;
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:17px;
-}
-
-.section-title{
-  font-size:15px;
-  font-weight:800;
-}
-
-.section-desc{
-  color:var(--muted);
-  font-size:10px;
-  margin-top:5px;
-}
-
-.btn{
-  border:0;
-  border-radius:5px;
-  height:38px;
-  padding:0 15px;
-  font-family:inherit;
-  cursor:pointer;
-  font-size:11px;
-  font-weight:700;
-}
-
-.btn-primary{
-  background:var(--primary);
-  color:#fff;
-}
-
-.btn-primary:hover{
-  background:var(--primary-dark);
-}
-
-.btn-light{
-  background:#fff;
-  color:#566174;
-  border:1px solid var(--border);
-}
-
-.btn-danger{
-  background:var(--danger-bg);
-  color:var(--danger);
-  border:1px solid #f1d0d0;
-}
-
-.btn-success{
-  background:var(--success-bg);
-  color:var(--success);
-  border:1px solid #cdebd9;
-}
-
-/* =========================
-   STAT CARDS
-========================= */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-bottom:20px;
-}
-
-.stat-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:6px;
-  padding:18px;
-  box-shadow:var(--shadow);
-}
-
-.stat-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.stat-icon{
-  width:39px;
-  height:39px;
-  background:#edf3ff;
-  color:var(--primary);
-  border-radius:5px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-}
-
-.stat-label{
-  color:var(--muted);
-  font-size:10px;
-}
-
-.stat-number{
-  font-size:23px;
-  font-weight:800;
-  margin-top:8px;
-}
-
-.stat-footer{
-  color:#8490a3;
-  font-size:9px;
-  margin-top:7px;
-}
-
-.up{
-  color:var(--success);
-}
-
-/* =========================
-   GRID
-========================= */
-
-.grid-2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.grid-3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:6px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-
-.card-header{
-  min-height:54px;
-  padding:0 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid var(--border);
-}
-
-.card-title{
-  font-size:12px;
-  font-weight:800;
-}
-
-.card-body{
-  padding:18px;
-}
-
-/* =========================
-   TABLE
-========================= */
-
-.table-wrap{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:6px;
-  box-shadow:var(--shadow);
-  overflow-x:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:700px;
-}
-
-thead{
-  background:#f7f8fa;
-}
-
-th{
-  color:#6d7788;
-  font-size:10px;
-  font-weight:800;
-  text-align:right;
-  padding:13px 15px;
-  border-bottom:1px solid var(--border);
-  white-space:nowrap;
-}
-
-td{
-  padding:14px 15px;
-  border-bottom:1px solid #edf0f4;
-  font-size:11px;
-  color:#384357;
-  white-space:nowrap;
-}
-
-tbody tr:hover{
-  background:#fafbfd;
-}
-
-tbody tr:last-child td{
-  border-bottom:0;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-width:58px;
-  padding:5px 9px;
-  border-radius:20px;
-  font-size:9px;
-  font-weight:800;
-}
-
-.badge-success{
-  color:var(--success);
-  background:var(--success-bg);
-}
-
-.badge-danger{
-  color:var(--danger);
-  background:var(--danger-bg);
-}
-
-.badge-warning{
-  color:var(--warning);
-  background:var(--warning-bg);
-}
-
-.badge-gray{
-  color:#697488;
-  background:#eef1f5;
-}
-
-.actions{
-  display:flex;
-  gap:5px;
-}
-
-.icon-btn{
-  width:29px;
-  height:29px;
-  border:1px solid var(--border);
-  background:#fff;
-  border-radius:4px;
-  cursor:pointer;
-  color:#647086;
-}
-
-.icon-btn:hover{
-  background:#f2f5f9;
-}
-
-/* =========================
-   SERVER STATUS
-========================= */
-
-.server-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:13px 0;
-  border-bottom:1px solid #edf0f4;
-}
-
-.server-item:last-child{
-  border-bottom:0;
-}
-
-.server-name{
-  font-size:11px;
-  font-weight:800;
-}
-
-.server-location{
-  color:var(--muted);
-  font-size:9px;
-  margin-top:4px;
-}
-
-.server-right{
+.top-right{
   display:flex;
   align-items:center;
   gap:10px;
 }
-
-.progress{
-  width:100px;
-  height:6px;
-  background:#edf0f4;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.progress span{
-  display:block;
-  height:100%;
-  background:var(--primary);
-  border-radius:20px;
-}
-
-/* =========================
-   CHART
-========================= */
-
-.chart{
-  height:235px;
+.status{
   display:flex;
-  align-items:flex-end;
-  gap:8px;
-  padding:20px 5px 0;
-  border-bottom:1px solid #e8ecf2;
+  align-items:center;
+  gap:7px;
+  font-size:12px;
+  color:var(--green);
 }
-
-.bar{
-  flex:1;
-  background:#dce7fa;
-  border:1px solid #c8d7f1;
-  border-bottom:0;
-  border-radius:3px 3px 0 0;
-  min-height:10px;
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--green);
 }
-
-.bar:hover{
-  background:#b8cdf1;
-}
-
-.chart-labels{
-  display:flex;
-  gap:8px;
-  padding-top:8px;
-}
-
-.chart-labels span{
-  flex:1;
-  text-align:center;
-  font-size:8px;
-  color:#8a94a5;
-}
-
-/* =========================
-   SETTINGS
-========================= */
-
-.settings-grid{
-  display:grid;
-  grid-template-columns:220px 1fr;
-  gap:18px;
-}
-
-.settings-menu{
+.logout{
+  border:1px solid var(--line);
   background:#fff;
-  border:1px solid var(--border);
-  border-radius:6px;
-  padding:7px;
-  height:max-content;
+  padding:8px 12px;
+  border-radius:8px;
+  color:#475569;
 }
-
-.settings-menu button{
-  width:100%;
-  height:40px;
-  border:0;
-  background:transparent;
-  border-radius:4px;
-  text-align:right;
-  padding:0 11px;
-  font-family:inherit;
+.content{padding:25px}
+.page{display:none}
+.page.active{display:block}
+.page-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+.page-head h2{
+  margin:0;
+  font-size:21px;
+}
+.page-head p{
+  color:var(--muted);
+  font-size:12px;
+  margin:7px 0 0;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:13px;
+  box-shadow:var(--shadow);
+}
+.stat{padding:20px}
+.stat-label{
+  color:var(--muted);
+  font-size:12px;
+}
+.stat-value{
+  font-size:27px;
+  font-weight:900;
+  margin-top:10px;
+}
+.stat-foot{
+  color:var(--muted);
   font-size:11px;
-  color:#606b7c;
-  cursor:pointer;
+  margin-top:7px;
 }
-
-.settings-menu button.active{
-  background:#edf3ff;
-  color:var(--primary);
-  font-weight:800;
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:18px;
 }
-
-.settings-panel{
-  display:none;
+.panel{
+  padding:20px;
 }
-
-.settings-panel.active{
-  display:block;
+.panel h3{
+  font-size:15px;
+  margin:0 0 17px;
 }
-
-.field-grid{
+.table-wrap{
+  overflow:auto;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+}
+th,td{
+  padding:13px 10px;
+  text-align:right;
+  border-bottom:1px solid var(--line);
+  font-size:12px;
+}
+th{
+  color:var(--muted);
+  font-weight:bold;
+  background:#fafbfc;
+}
+.badge{
+  display:inline-flex;
+  padding:4px 8px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:bold;
+}
+.badge.green{background:#dcfce7;color:#15803d}
+.badge.red{background:#fee2e2;color:#b91c1c}
+.badge.orange{background:#fef3c7;color:#a16207}
+.badge.blue{background:#dbeafe;color:#1d4ed8}
+.btn{
+  border:0;
+  border-radius:8px;
+  padding:9px 13px;
+  background:var(--blue);
+  color:#fff;
+  font-size:12px;
+  font-weight:bold;
+}
+.btn.dark{background:var(--navy)}
+.btn.light{
+  background:#fff;
+  color:#334155;
+  border:1px solid var(--line);
+}
+.btn.red{background:var(--red)}
+.actions{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+.form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:15px;
 }
-
-.field{
-  margin-bottom:16px;
-}
-
-.field.full{
-  grid-column:1/-1;
-}
-
-.field label{
-  display:block;
-  color:#5c6779;
-  font-size:10px;
-  font-weight:800;
-  margin-bottom:7px;
-}
-
-.field input,
-.field select,
-.field textarea{
-  width:100%;
-  border:1px solid #d9dfe8;
-  background:#fff;
-  border-radius:5px;
-  min-height:40px;
-  padding:8px 11px;
-  font-family:inherit;
-  font-size:11px;
-  color:#273246;
-  outline:none;
-}
-
-.field textarea{
-  height:90px;
-  resize:vertical;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-  border-color:#87a6dd;
-}
-
-.switch-row{
+.full{grid-column:1/-1}
+.save-row{
+  margin-top:18px;
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:13px 0;
-  border-bottom:1px solid #edf0f4;
-}
-
-.switch-row:last-child{
-  border-bottom:0;
-}
-
-.switch-title{
-  font-size:11px;
-  font-weight:800;
-}
-
-.switch-desc{
-  color:var(--muted);
-  font-size:9px;
-  margin-top:4px;
-}
-
-.switch{
-  width:40px;
-  height:22px;
-  border-radius:20px;
-  background:#d9dee7;
-  cursor:pointer;
-  position:relative;
-  transition:.2s;
-}
-
-.switch:after{
-  content:"";
-  position:absolute;
-  width:16px;
-  height:16px;
-  background:#fff;
-  border-radius:50%;
-  top:3px;
-  right:3px;
-  box-shadow:0 1px 3px rgba(0,0,0,.2);
-  transition:.2s;
-}
-
-.switch.on{
-  background:var(--primary);
-}
-
-.switch.on:after{
-  right:21px;
-}
-
-/* =========================
-   LOG
-========================= */
-
-.log{
-  display:flex;
-  gap:12px;
-  padding:13px 0;
-  border-bottom:1px solid #edf0f4;
-}
-
-.log:last-child{
-  border-bottom:0;
-}
-
-.log-icon{
-  width:32px;
-  height:32px;
-  border-radius:50%;
-  background:#edf3ff;
-  color:var(--primary);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex:none;
-}
-
-.log-title{
-  font-size:10px;
-  font-weight:800;
-}
-
-.log-meta{
-  color:var(--muted);
-  font-size:9px;
-  margin-top:4px;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(17,27,43,.45);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:5000;
-  padding:20px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  background:#fff;
-  width:500px;
-  max-width:100%;
-  border-radius:7px;
-  box-shadow:0 15px 50px rgba(0,0,0,.18);
-  overflow:hidden;
-}
-
-.modal-head{
-  height:55px;
-  padding:0 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid var(--border);
-}
-
-.modal-title{
-  font-weight:800;
-  font-size:13px;
-}
-
-.close{
-  width:30px;
-  height:30px;
-  border:0;
-  background:#f1f3f6;
-  border-radius:4px;
-  cursor:pointer;
-}
-
-.modal-body{
-  padding:20px;
-}
-
-.modal-footer{
-  padding:14px 20px;
-  border-top:1px solid var(--border);
-  display:flex;
-  justify-content:flex-start;
   gap:8px;
 }
 
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-  position:fixed;
-  left:25px;
-  bottom:25px;
-  background:#172033;
-  color:#fff;
-  padding:12px 17px;
-  border-radius:5px;
-  box-shadow:0 5px 20px rgba(0,0,0,.15);
-  font-size:11px;
-  z-index:99999;
-  transform:translateY(80px);
-  opacity:0;
-  transition:.25s;
-}
-
-.toast.show{
-  transform:translateY(0);
-  opacity:1;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
+/* Mobile */
 .mobile-menu{
   display:none;
-  width:37px;
-  height:37px;
-  border:1px solid var(--border);
+  border:0;
   background:#fff;
-  border-radius:5px;
-  cursor:pointer;
+  font-size:22px;
 }
-
 .overlay{
   display:none;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.35);
-  z-index:999;
+  z-index:40;
 }
-
-@media(max-width:1100px){
-
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .grid-2{
-    grid-template-columns:1fr;
-  }
-
-  .settings-grid{
-    grid-template-columns:1fr;
-  }
+@media(max-width:1000px){
+  .cards{grid-template-columns:1fr 1fr}
+  .grid2{grid-template-columns:1fr}
 }
-
-@media(max-width:800px){
-
+@media(max-width:700px){
   .sidebar{
-    right:-245px;
+    transform:translateX(100%);
     transition:.25s;
   }
-
-  .sidebar.open{
-    right:0;
-  }
-
-  .overlay.open{
-    display:block;
-  }
-
-  .main{
-    margin-right:0;
-  }
-
-  .mobile-menu{
-    display:block;
-  }
-
-  .topbar{
-    padding:0 14px;
-  }
-
-  .admin-name,
-  .admin-role{
-    display:none;
-  }
-
-  .content{
-    padding:15px;
-  }
-
-  .stats{
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-
-  .stat-card{
-    padding:13px;
-  }
-
-  .stat-number{
-    font-size:19px;
-  }
-
-  .top-actions .top-btn{
-    display:none;
-  }
-
-  .field-grid{
-    grid-template-columns:1fr;
-  }
-
-  .field.full{
-    grid-column:auto;
-  }
+  .sidebar.open{transform:translateX(0)}
+  .overlay.open{display:block}
+  .main{margin-right:0}
+  .mobile-menu{display:block}
+  .topbar{padding:0 15px}
+  .content{padding:15px}
+  .cards{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .full{grid-column:auto}
+  .top-title{font-size:14px}
 }
 
-@media(max-width:500px){
-
-  .stats{
-    grid-template-columns:1fr;
-  }
-
-  .section-head{
-    align-items:flex-start;
-    gap:10px;
-    flex-direction:column;
-  }
-
-  .login-box{
-    width:95%;
-  }
+/* Toast */
+.toast{
+  position:fixed;
+  left:20px;
+  bottom:20px;
+  background:var(--navy);
+  color:#fff;
+  padding:12px 17px;
+  border-radius:9px;
+  font-size:12px;
+  opacity:0;
+  transform:translateY(15px);
+  pointer-events:none;
+  transition:.25s;
+  z-index:100;
+}
+.toast.show{
+  opacity:1;
+  transform:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     LOGIN
-========================= -->
-
-<div class="login-page" id="loginPage">
-
+<!-- LOGIN -->
+<section id="loginPage" class="login-page">
   <div class="login-box">
 
-    <div class="login-head">
-      <div class="login-logo">GURDPANEL</div>
-      <div class="login-sub">سامانه مدیریت سرویس VPN</div>
-    </div>
-
-    <div class="login-body">
-
-      <div class="login-error" id="loginError">
-        نام کاربری یا رمز عبور اشتباه است.
-      </div>
-
-      <div class="form-group">
-        <label>نام کاربری</label>
-        <input
-          id="username"
-          class="input"
-          type="text"
-          placeholder="نام کاربری"
-          autocomplete="username"
-        >
-      </div>
-
-      <div class="form-group">
-        <label>رمز عبور</label>
-        <input
-          id="password"
-          class="input"
-          type="password"
-          placeholder="رمز عبور"
-          autocomplete="current-password"
-        >
-      </div>
-
-      <button class="login-button" onclick="login()">
-        ورود به پنل
-      </button>
-
-      <div class="demo-login">
-        نسخه آزمایشی — admin / gurd123
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
-
-<!-- =========================
-     APP
-========================= -->
-
-<div class="app" id="app">
-
-  <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
-
-  <!-- SIDEBAR -->
-
-  <aside class="sidebar" id="sidebar">
-
     <div class="brand">
-
-      <div class="brand-mark">
-        GP
-      </div>
-
+      <div class="brand-icon">G</div>
       <div>
-        <div class="brand-text">
-          GURDPANEL
-        </div>
-
-        <span class="brand-version">
-          VPN MANAGEMENT
-        </span>
+        <h1>GURDPANEL</h1>
+        <p>Professional VPN Management</p>
       </div>
-
     </div>
 
-
-    <div class="menu-title">
-      اصلی
+    <h2 class="login-title">ورود به پنل مدیریت</h2>
+    <div class="login-sub">
+      برای ورود، اطلاعات حساب پنل BPB خودت را وارد کن.
     </div>
 
-    <ul class="menu">
+    <div id="loginError" class="error hidden"></div>
 
-      <li>
-        <button class="active" data-page="dashboard" onclick="showPage('dashboard',this)">
-          <span class="menu-icon">⌂</span>
-          داشبورد
-        </button>
-      </li>
-
-      <li>
-        <button data-page="users" onclick="showPage('users',this)">
-          <span class="menu-icon">♙</span>
-          کاربران
-        </button>
-      </li>
-
-      <li>
-        <button data-page="configs" onclick="showPage('configs',this)">
-          <span class="menu-icon">⌘</span>
-          کانفیگ‌ها
-        </button>
-      </li>
-
-      <li>
-        <button data-page="subscriptions" onclick="showPage('subscriptions',this)">
-          <span class="menu-icon">▣</span>
-          اشتراک‌ها
-        </button>
-      </li>
-
-    </ul>
-
-
-    <div class="menu-title">
-      زیرساخت
+    <div class="field">
+      <label>Cloudflare Email</label>
+      <input id="email" type="email" autocomplete="username"
+             placeholder="admin@example.com">
     </div>
 
-    <ul class="menu">
-
-      <li>
-        <button data-page="servers" onclick="showPage('servers',this)">
-          <span class="menu-icon">▦</span>
-          سرورها
-        </button>
-      </li>
-
-      <li>
-        <button data-page="traffic" onclick="showPage('traffic',this)">
-          <span class="menu-icon">◫</span>
-          ترافیک
-        </button>
-      </li>
-
-      <li>
-        <button data-page="dns" onclick="showPage('dns',this)">
-          <span class="menu-icon">◈</span>
-          DNS / NAT64
-        </button>
-      </li>
-
-      <li>
-        <button data-page="proxy" onclick="showPage('proxy',this)">
-          <span class="menu-icon">⇄</span>
-          Proxy / Clean IP
-        </button>
-      </li>
-
-    </ul>
-
-
-    <div class="menu-title">
-      امکانات VPN
+    <div class="field">
+      <label>Password</label>
+      <input id="password" type="password" autocomplete="current-password"
+             placeholder="••••••••">
     </div>
 
-    <ul class="menu">
+    <button class="login-btn" onclick="login()">
+      ورود به GURDPANEL
+    </button>
 
-      <li>
-        <button data-page="fragment" onclick="showPage('fragment',this)">
-          <span class="menu-icon">◇</span>
-          Fragment
-        </button>
-      </li>
-
-      <li>
-        <button data-page="warp" onclick="showPage('warp',this)">
-          <span class="menu-icon">⚡</span>
-          WARP
-        </button>
-      </li>
-
-    </ul>
-
-
-    <div class="menu-title">
-      سیستم
+    <div class="note">
+      اطلاعات ورود در GitHub ذخیره نمی‌شود.
+      GURDPANEL فقط رابط اختصاصی مدیریت پنل شماست.
     </div>
 
-    <ul class="menu">
-
-      <li>
-        <button data-page="activity" onclick="showPage('activity',this)">
-          <span class="menu-icon">☷</span>
-          گزارش فعالیت
-        </button>
-      </li>
-
-      <li>
-        <button data-page="settings" onclick="showPage('settings',this)">
-          <span class="menu-icon">⚙</span>
-          تنظیمات
-        </button>
-      </li>
-
-    </ul>
+  </div>
+</section>
 
 
-    <div class="sidebar-bottom">
+<!-- APP -->
+<section id="app" class="app hidden">
 
-      <div class="server-mini">
+  <aside id="sidebar" class="sidebar">
 
-        <div class="server-mini-title">
-          وضعیت سرویس
-        </div>
-
-        <div class="online-line">
-          <span class="dot"></span>
-          تمام سرویس‌ها فعال هستند
-        </div>
-
+    <div class="side-brand">
+      <div class="side-logo">G</div>
+      <div>
+        <strong>GURDPANEL</strong>
+        <small>VPN Management</small>
       </div>
-
     </div>
+
+    <div class="menu-title">MAIN</div>
+
+    <button class="nav-btn active" onclick="showPage('dashboard',this)">
+      داشبورد
+    </button>
+
+    <button class="nav-btn" onclick="showPage('configs',this)">
+      کانفیگ‌ها
+    </button>
+
+    <button class="nav-btn" onclick="showPage('subscriptions',this)">
+      Subscription
+    </button>
+
+    <button class="nav-btn" onclick="showPage('servers',this)">
+      سرورها
+    </button>
+
+    <div class="menu-title">NETWORK</div>
+
+    <button class="nav-btn" onclick="showPage('dns',this)">
+      DNS / DoH / NAT64
+    </button>
+
+    <button class="nav-btn" onclick="showPage('fragment',this)">
+      Fragment
+    </button>
+
+    <button class="nav-btn" onclick="showPage('warp',this)">
+      WARP
+    </button>
+
+    <button class="nav-btn" onclick="showPage('proxy',this)">
+      Proxy / Clean IP
+    </button>
+
+    <button class="nav-btn" onclick="showPage('routing',this)">
+      Routing
+    </button>
+
+    <div class="menu-title">SYSTEM</div>
+
+    <button class="nav-btn" onclick="showPage('settings',this)">
+      تنظیمات
+    </button>
+
+    <button class="nav-btn" onclick="showPage('import',this)">
+      Import / Export
+    </button>
+
+    <button class="nav-btn" onclick="showPage('logs',this)">
+      Activity Logs
+    </button>
 
   </aside>
 
-
-  <!-- MAIN -->
+  <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
 
   <main class="main">
 
     <header class="topbar">
 
-      <div style="display:flex;align-items:center;gap:12px">
-
-        <button class="mobile-menu" onclick="openMobileMenu()">
-          ☰
-        </button>
-
-        <div>
-          <div class="page-title" id="pageTitle">
-            داشبورد
-          </div>
-
-          <div class="page-breadcrumb">
-            GURDPANEL / مدیریت سرویس
-          </div>
-        </div>
-
+      <div class="top-right">
+        <button class="mobile-menu" onclick="openSidebar()">☰</button>
+        <div id="topTitle" class="top-title">داشبورد</div>
       </div>
 
-
-      <div class="top-actions">
-
-        <button class="top-btn" onclick="refreshPanel()">
-          ↻ بروزرسانی
-        </button>
-
-        <button class="top-btn" onclick="openModal('notificationModal')">
-          ♧ اعلان‌ها
-        </button>
-
-        <div class="admin-user">
-
-          <div>
-            <div class="admin-name">
-              مدیر سیستم
-            </div>
-
-            <div class="admin-role">
-              Administrator
-            </div>
-          </div>
-
-          <div class="admin-avatar">
-            A
-          </div>
-
+      <div class="top-right">
+        <div class="status">
+          <span class="dot"></span>
+          Worker Online
         </div>
-
+        <button class="logout" onclick="logout()">خروج</button>
       </div>
 
     </header>
@@ -1428,936 +555,112 @@ tbody tr:last-child td{
 
     <div class="content">
 
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="page active">
 
-      <!-- ================= DASHBOARD ================= -->
-
-      <section class="page active" id="page-dashboard">
-
-        <div class="section-head">
-
+        <div class="page-head">
           <div>
-            <div class="section-title">
-              نمای کلی سیستم
-            </div>
-
-            <div class="section-desc">
-              وضعیت کلی کاربران، سرورها و سرویس VPN
-            </div>
+            <h2>داشبورد</h2>
+            <p>وضعیت کلی GURDPANEL و Worker</p>
           </div>
 
-          <button class="btn btn-primary" onclick="openModal('configModal')">
-            + ساخت کانفیگ
+          <button class="btn dark" onclick="openWorker()">
+            باز کردن پنل اصلی BPB
           </button>
-
         </div>
 
+        <div class="cards">
 
-        <div class="stats">
-
-          <div class="stat-card">
-
-            <div class="stat-top">
-
-              <div>
-                <div class="stat-label">
-                  کاربران فعال
-                </div>
-
-                <div class="stat-number">
-                  1,284
-                </div>
-              </div>
-
-              <div class="stat-icon">
-                ♙
-              </div>
-
-            </div>
-
-            <div class="stat-footer">
-              <span class="up">▲ 8.4%</span>
-              نسبت به ماه گذشته
-            </div>
-
+          <div class="card stat">
+            <div class="stat-label">Worker Status</div>
+            <div class="stat-value">ONLINE</div>
+            <div class="stat-foot">Cloudflare Worker</div>
           </div>
 
-
-          <div class="stat-card">
-
-            <div class="stat-top">
-
-              <div>
-                <div class="stat-label">
-                  کانفیگ فعال
-                </div>
-
-                <div class="stat-number">
-                  3,942
-                </div>
-              </div>
-
-              <div class="stat-icon">
-                ⌘
-              </div>
-
-            </div>
-
-            <div class="stat-footer">
-              3,721 کانفیگ در حال استفاده
-            </div>
-
+          <div class="card stat">
+            <div class="stat-label">Protocols</div>
+            <div class="stat-value">2</div>
+            <div class="stat-foot">VLESS / Trojan</div>
           </div>
 
-
-          <div class="stat-card">
-
-            <div class="stat-top">
-
-              <div>
-                <div class="stat-label">
-                  مصرف امروز
-                </div>
-
-                <div class="stat-number">
-                  428 GB
-                </div>
-              </div>
-
-              <div class="stat-icon">
-                ◫
-              </div>
-
-            </div>
-
-            <div class="stat-footer">
-              <span class="up">▲ 4.1%</span>
-              نسبت به دیروز
-            </div>
-
+          <div class="card stat">
+            <div class="stat-label">WARP</div>
+            <div class="stat-value">ON</div>
+            <div class="stat-foot">Cloudflare WARP</div>
           </div>
 
-
-          <div class="stat-card">
-
-            <div class="stat-top">
-
-              <div>
-                <div class="stat-label">
-                  سرورهای آنلاین
-                </div>
-
-                <div class="stat-number">
-                  8 / 9
-                </div>
-              </div>
-
-              <div class="stat-icon">
-                ▦
-              </div>
-
-            </div>
-
-            <div class="stat-footer">
-              یک سرور نیاز به بررسی دارد
-            </div>
-
+          <div class="card stat">
+            <div class="stat-label">DNS</div>
+            <div class="stat-value">8.8.8.8</div>
+            <div class="stat-foot">Remote DNS</div>
           </div>
 
         </div>
 
 
-        <div class="grid-2">
+        <div class="grid2">
 
-          <div class="card">
+          <div class="card panel">
 
-            <div class="card-header">
+            <h3>تنظیمات فعلی Worker</h3>
 
-              <div class="card-title">
-                وضعیت سرورها
-              </div>
+            <div class="table-wrap">
+              <table>
+                <tr>
+                  <th>گزینه</th>
+                  <th>مقدار</th>
+                </tr>
+                <tr>
+                  <td>Protocols</td>
+                  <td><span class="badge blue">VLESS + Trojan</span></td>
+                </tr>
+                <tr>
+                  <td>Fingerprint</td>
+                  <td>chrome</td>
+                </tr>
+                <tr>
+                  <td>Fragment</td>
+                  <td><span class="badge orange">Custom</span></td>
+                </tr>
+                <tr>
+                  <td>WARP</td>
+                  <td><span class="badge green">Enabled</span></td>
+                </tr>
+                <tr>
+                  <td>NAT64</td>
+                  <td>2602:fc59:11:64::</td>
+                </tr>
+              </table>
+            </div>
 
-              <button class="btn btn-light" onclick="showPage('servers')">
-                مشاهده همه
+          </div>
+
+
+          <div class="card panel">
+
+            <h3>دسترسی سریع</h3>
+
+            <div class="actions">
+
+              <button class="btn" onclick="showPageById('configs')">
+                کانفیگ‌ها
               </button>
 
-            </div>
-
-            <div class="card-body">
-
-              <div class="server-item">
-
-                <div>
-                  <div class="server-name">
-                    Germany 01
-                  </div>
-
-                  <div class="server-location">
-                    فرانکفورت
-                  </div>
-                </div>
-
-                <div class="server-right">
-                  <div class="progress">
-                    <span style="width:42%"></span>
-                  </div>
-
-                  <span class="badge badge-success">
-                    آنلاین
-                  </span>
-                </div>
-
-              </div>
-
-
-              <div class="server-item">
-
-                <div>
-                  <div class="server-name">
-                    Germany 02
-                  </div>
-
-                  <div class="server-location">
-                    نورنبرگ
-                  </div>
-                </div>
-
-                <div class="server-right">
-                  <div class="progress">
-                    <span style="width:61%"></span>
-                  </div>
-
-                  <span class="badge badge-success">
-                    آنلاین
-                  </span>
-                </div>
-
-              </div>
-
-
-              <div class="server-item">
-
-                <div>
-                  <div class="server-name">
-                    Finland 01
-                  </div>
-
-                  <div class="server-location">
-                    هلسینکی
-                  </div>
-                </div>
-
-                <div class="server-right">
-                  <div class="progress">
-                    <span style="width:29%"></span>
-                  </div>
-
-                  <span class="badge badge-success">
-                    آنلاین
-                  </span>
-                </div>
-
-              </div>
-
-
-              <div class="server-item">
-
-                <div>
-                  <div class="server-name">
-                    Germany 03
-                  </div>
-
-                  <div class="server-location">
-                    فرانکفورت
-                  </div>
-                </div>
-
-                <div class="server-right">
-                  <div class="progress">
-                    <span style="width:91%"></span>
-                  </div>
-
-                  <span class="badge badge-warning">
-                    فشار بالا
-                  </span>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="card">
-
-            <div class="card-header">
-
-              <div class="card-title">
-                آخرین فعالیت‌ها
-              </div>
-
-              <button class="btn btn-light" onclick="showPage('activity')">
-                همه
-              </button>
-
-            </div>
-
-            <div class="card-body">
-
-              <div class="log">
-
-                <div class="log-icon">
-                  +
-                </div>
-
-                <div>
-                  <div class="log-title">
-                    کاربر جدید ایجاد شد
-                  </div>
-
-                  <div class="log-meta">
-                    admin · ۲ دقیقه قبل
-                  </div>
-                </div>
-
-              </div>
-
-
-              <div class="log">
-
-                <div class="log-icon">
-                  ⌘
-                </div>
-
-                <div>
-                  <div class="log-title">
-                    کانفیگ جدید ساخته شد
-                  </div>
-
-                  <div class="log-meta">
-                    Germany 01 · ۸ دقیقه قبل
-                  </div>
-                </div>
-
-              </div>
-
-
-              <div class="log">
-
-                <div class="log-icon">
-                  ⚙
-                </div>
-
-                <div>
-                  <div class="log-title">
-                    تنظیمات DNS تغییر کرد
-                  </div>
-
-                  <div class="log-meta">
-                    admin · ۲۲ دقیقه قبل
-                  </div>
-                </div>
-
-              </div>
-
-
-              <div class="log">
-
-                <div class="log-icon">
-                  !
-                </div>
-
-                <div>
-                  <div class="log-title">
-                    مصرف بالای Germany 03
-                  </div>
-
-                  <div class="log-meta">
-                    سیستم · ۳۷ دقیقه قبل
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= USERS ================= -->
-
-      <section class="page" id="page-users">
-
-        <div class="section-head">
-
-          <div>
-            <div class="section-title">
-              مدیریت کاربران
-            </div>
-
-            <div class="section-desc">
-              ایجاد، مدیریت و کنترل کاربران سرویس
-            </div>
-          </div>
-
-          <button class="btn btn-primary" onclick="openModal('userModal')">
-            + کاربر جدید
-          </button>
-
-        </div>
-
-
-        <div class="table-wrap">
-
-          <table>
-
-            <thead>
-              <tr>
-                <th>کاربر</th>
-                <th>شناسه</th>
-                <th>پلن</th>
-                <th>مصرف</th>
-                <th>انقضا</th>
-                <th>وضعیت</th>
-                <th>عملیات</th>
-              </tr>
-            </thead>
-
-            <tbody>
-
-              <tr>
-                <td><b>Ali</b></td>
-                <td>USR-1001</td>
-                <td>100GB</td>
-                <td>42.8GB</td>
-                <td>1405/07/21</td>
-                <td><span class="badge badge-success">فعال</span></td>
-                <td>
-                  <div class="actions">
-                    <button class="icon-btn" onclick="toast('ویرایش کاربر')">✎</button>
-                    <button class="icon-btn" onclick="toast('جزئیات کاربر')">⌕</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td><b>Reza</b></td>
-                <td>USR-1002</td>
-                <td>50GB</td>
-                <td>49.1GB</td>
-                <td>1405/07/12</td>
-                <td><span class="badge badge-warning">نزدیک انقضا</span></td>
-                <td>
-                  <div class="actions">
-                    <button class="icon-btn">✎</button>
-                    <button class="icon-btn">⌕</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td><b>Mohammad</b></td>
-                <td>USR-1003</td>
-                <td>Unlimited</td>
-                <td>128GB</td>
-                <td>1405/08/01</td>
-                <td><span class="badge badge-success">فعال</span></td>
-                <td>
-                  <div class="actions">
-                    <button class="icon-btn">✎</button>
-                    <button class="icon-btn">⌕</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td><b>Sina</b></td>
-                <td>USR-1004</td>
-                <td>20GB</td>
-                <td>20GB</td>
-                <td>1405/06/29</td>
-                <td><span class="badge badge-danger">منقضی</span></td>
-                <td>
-                  <div class="actions">
-                    <button class="icon-btn">✎</button>
-                    <button class="icon-btn">⌕</button>
-                  </div>
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= CONFIGS ================= -->
-
-      <section class="page" id="page-configs">
-
-        <div class="section-head">
-
-          <div>
-            <div class="section-title">
-              مدیریت کانفیگ‌ها
-            </div>
-
-            <div class="section-desc">
-              مدیریت کانفیگ‌های VLESS، Trojan و WireGuard
-            </div>
-          </div>
-
-          <button class="btn btn-primary" onclick="openModal('configModal')">
-            + کانفیگ جدید
-          </button>
-
-        </div>
-
-
-        <div class="table-wrap">
-
-          <table>
-
-            <thead>
-              <tr>
-                <th>نام کانفیگ</th>
-                <th>پروتکل</th>
-                <th>سرور</th>
-                <th>پورت</th>
-                <th>کاربر</th>
-                <th>وضعیت</th>
-                <th>عملیات</th>
-              </tr>
-            </thead>
-
-            <tbody>
-
-              <tr>
-                <td><b>GURD-DE-01</b></td>
-                <td>VLESS</td>
-                <td>Germany 01</td>
-                <td>443</td>
-                <td>Ali</td>
-                <td><span class="badge badge-success">فعال</span></td>
-                <td>
-                  <div class="actions">
-                    <button class="icon-btn" onclick="toast('لینک کانفیگ کپی شد')">⧉</button>
-                    <button class="icon-btn">✎</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td><b>GURD-FI-02</b></td>
-                <td>VLESS</td>
-                <td>Finland 01</td>
-                <td>443</td>
-                <td>Reza</td>
-                <td><span class="badge badge-success">فعال</span></td>
-                <td>
-                  <div class="actions">
-                    <button class="icon-btn">⧉</button>
-                    <button class="icon-btn">✎</button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td><b>GURD-DE-03</b></td>
-                <td>Trojan</td>
-                <td>Germany 02</td>
-                <td>443</td>
-                <td>Mohammad</td>
-                <td><span class="badge badge-success">فعال</span></td>
-                <td>
-                  <div class="actions">
-                    <button class="icon-btn">⧉</button>
-                    <button class="icon-btn">✎</button>
-                  </div>
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= SUBSCRIPTIONS ================= -->
-
-      <section class="page" id="page-subscriptions">
-
-        <div class="section-head">
-
-          <div>
-            <div class="section-title">
-              اشتراک‌ها
-            </div>
-
-            <div class="section-desc">
-              پلن‌های فروش و اشتراک کاربران
-            </div>
-
-          </div>
-
-          <button class="btn btn-primary" onclick="openModal('planModal')">
-            + پلن جدید
-          </button>
-
-        </div>
-
-
-        <div class="grid-3">
-
-          <div class="card">
-
-            <div class="card-header">
-              <div class="card-title">20GB</div>
-              <span class="badge badge-success">فعال</span>
-            </div>
-
-            <div class="card-body">
-
-              <div style="font-size:24px;font-weight:800">
-                40,000
-              </div>
-
-              <div style="font-size:9px;color:#8a94a5;margin-top:5px">
-                تومان
-              </div>
-
-              <hr style="border:0;border-top:1px solid #edf0f4;margin:17px 0">
-
-              <div style="font-size:10px;color:#687386;line-height:2.2">
-                حجم: 20GB<br>
-                مدت: 30 روز<br>
-                تعداد کاربر: 1
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="card">
-
-            <div class="card-header">
-              <div class="card-title">100GB</div>
-              <span class="badge badge-success">فعال</span>
-            </div>
-
-            <div class="card-body">
-
-              <div style="font-size:24px;font-weight:800">
-                250,000
-              </div>
-
-              <div style="font-size:9px;color:#8a94a5;margin-top:5px">
-                تومان
-              </div>
-
-              <hr style="border:0;border-top:1px solid #edf0f4;margin:17px 0">
-
-              <div style="font-size:10px;color:#687386;line-height:2.2">
-                حجم: 100GB<br>
-                مدت: 30 روز<br>
-                تعداد کاربر: 1
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="card">
-
-            <div class="card-header">
-              <div class="card-title">Unlimited</div>
-              <span class="badge badge-success">فعال</span>
-            </div>
-
-            <div class="card-body">
-
-              <div style="font-size:24px;font-weight:800">
-                99,000
-              </div>
-
-              <div style="font-size:9px;color:#8a94a5;margin-top:5px">
-                تومان / ماه
-              </div>
-
-              <hr style="border:0;border-top:1px solid #edf0f4;margin:17px 0">
-
-              <div style="font-size:10px;color:#687386;line-height:2.2">
-                حجم: نامحدود<br>
-                مدت: 30 روز<br>
-                تعداد کاربر: 1
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= SERVERS ================= -->
-
-      <section class="page" id="page-servers">
-
-        <div class="section-head">
-
-          <div>
-            <div class="section-title">
-              سرورها
-            </div>
-
-            <div class="section-desc">
-              وضعیت و مدیریت سرورهای VPN
-            </div>
-
-          </div>
-
-          <button class="btn btn-primary" onclick="openModal('serverModal')">
-            + افزودن سرور
-          </button>
-
-        </div>
-
-
-        <div class="table-wrap">
-
-          <table>
-
-            <thead>
-              <tr>
-                <th>سرور</th>
-                <th>موقعیت</th>
-                <th>IP</th>
-                <th>CPU</th>
-                <th>RAM</th>
-                <th>Uptime</th>
-                <th>وضعیت</th>
-                <th>عملیات</th>
-              </tr>
-            </thead>
-
-            <tbody>
-
-              <tr>
-                <td><b>Germany 01</b></td>
-                <td>فرانکفورت</td>
-                <td>185.x.x.10</td>
-                <td>42%</td>
-                <td>51%</td>
-                <td>18d 04h</td>
-                <td><span class="badge badge-success">آنلاین</span></td>
-                <td><button class="icon-btn">⚙</button></td>
-              </tr>
-
-              <tr>
-                <td><b>Germany 02</b></td>
-                <td>نورنبرگ</td>
-                <td>185.x.x.11</td>
-                <td>61%</td>
-                <td>63%</td>
-                <td>24d 11h</td>
-                <td><span class="badge badge-success">آنلاین</span></td>
-                <td><button class="icon-btn">⚙</button></td>
-              </tr>
-
-              <tr>
-                <td><b>Finland 01</b></td>
-                <td>هلسینکی</td>
-                <td>95.x.x.21</td>
-                <td>29%</td>
-                <td>37%</td>
-                <td>11d 09h</td>
-                <td><span class="badge badge-success">آنلاین</span></td>
-                <td><button class="icon-btn">⚙</button></td>
-              </tr>
-
-              <tr>
-                <td><b>Germany 03</b></td>
-                <td>فرانکفورت</td>
-                <td>185.x.x.12</td>
-                <td>91%</td>
-                <td>87%</td>
-                <td>2d 04h</td>
-                <td><span class="badge badge-warning">فشار بالا</span></td>
-                <td><button class="icon-btn">⚙</button></td>
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= TRAFFIC ================= -->
-
-      <section class="page" id="page-traffic">
-
-        <div class="section-head">
-
-          <div>
-            <div class="section-title">
-              گزارش ترافیک
-            </div>
-
-            <div class="section-desc">
-              مصرف پهنای باند سرویس
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="card-header">
-
-            <div class="card-title">
-              مصرف هفت روز اخیر
-            </div>
-
-            <span class="badge badge-gray">
-              GB
-            </span>
-
-          </div>
-
-          <div class="card-body">
-
-            <div class="chart">
-
-              <div class="bar" style="height:38%"></div>
-              <div class="bar" style="height:51%"></div>
-              <div class="bar" style="height:45%"></div>
-              <div class="bar" style="height:69%"></div>
-              <div class="bar" style="height:58%"></div>
-              <div class="bar" style="height:78%"></div>
-              <div class="bar" style="height:63%"></div>
-
-            </div>
-
-            <div class="chart-labels">
-              <span>شنبه</span>
-              <span>یکشنبه</span>
-              <span>دوشنبه</span>
-              <span>سه‌شنبه</span>
-              <span>چهارشنبه</span>
-              <span>پنجشنبه</span>
-              <span>جمعه</span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= DNS ================= -->
-
-      <section class="page" id="page-dns">
-
-        <div class="section-head">
-
-          <div>
-            <div class="section-title">
-              DNS / NAT64
-            </div>
-
-            <div class="section-desc">
-              مدیریت DNS، NAT64 و مسیرهای شبکه
-            </div>
-
-          </div>
-
-          <button class="btn btn-primary" onclick="saveSettings()">
-            ذخیره تنظیمات
-          </button>
-
-        </div>
-
-
-        <div class="grid-2">
-
-          <div class="card">
-
-            <div class="card-header">
-              <div class="card-title">
+              <button class="btn dark" onclick="showPageById('dns')">
                 DNS
-              </div>
-            </div>
+              </button>
 
-            <div class="card-body">
+              <button class="btn light" onclick="showPageById('fragment')">
+                Fragment
+              </button>
 
-              <div class="field">
-                <label>Primary DNS</label>
-                <input class="input" value="1.1.1.1">
-              </div>
+              <button class="btn light" onclick="showPageById('warp')">
+                WARP
+              </button>
 
-              <div class="field">
-                <label>Secondary DNS</label>
-                <input class="input" value="1.0.0.1">
-              </div>
-
-              <div class="switch-row">
-                <div>
-                  <div class="switch-title">Private DNS</div>
-                  <div class="switch-desc">استفاده از DNS خصوصی</div>
-                </div>
-
-                <div class="switch on" onclick="toggleSwitch(this)"></div>
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="card">
-
-            <div class="card-header">
-              <div class="card-title">
-                NAT64 Prefixes
-              </div>
-            </div>
-
-            <div class="card-body">
-
-              <div class="field">
-                <label>Prefix 1</label>
-                <input class="input" value="2a02:898:146:64::">
-              </div>
-
-              <div class="field">
-                <label>Prefix 2</label>
-                <input class="input" value="2602:fc59:b0:64::">
-              </div>
-
-              <div class="field">
-                <label>Prefix 3</label>
-                <input class="input" value="2602:fc59:11:64::">
-              </div>
+              <button class="btn light" onclick="showPageById('proxy')">
+                Proxy
+              </button>
 
             </div>
 
@@ -2368,72 +671,139 @@ tbody tr:last-child td{
       </section>
 
 
-      <!-- ================= PROXY ================= -->
+      <!-- CONFIGS -->
+      <section id="configs" class="page">
 
-      <section class="page" id="page-proxy">
-
-        <div class="section-head">
-
+        <div class="page-head">
           <div>
-            <div class="section-title">
-              Proxy / Clean IP
-            </div>
+            <h2>کانفیگ‌ها</h2>
+            <p>پروتکل‌های فعال Worker</p>
+          </div>
+        </div>
 
-            <div class="section-desc">
-              مدیریت مسیرهای Proxy و IPهای قابل استفاده
-            </div>
+        <div class="card panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Protocol</th>
+                  <th>Fingerprint</th>
+                  <th>Ports</th>
+                  <th>Status</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <tr>
+                  <td><b>VLESS</b></td>
+                  <td>chrome</td>
+                  <td>80 / 443 / 8080</td>
+                  <td><span class="badge green">Active</span></td>
+                  <td>
+                    <div class="actions">
+                      <button class="btn" onclick="copyText('VLESS')">کپی</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><b>Trojan</b></td>
+                  <td>chrome</td>
+                  <td>80 / 443 / 8443</td>
+                  <td><span class="badge green">Active</span></td>
+                  <td>
+                    <div class="actions">
+                      <button class="btn" onclick="copyText('Trojan')">کپی</button>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
 
           </div>
 
-          <button class="btn btn-primary" onclick="toast('لیست IP بروزرسانی شد')">
-            بروزرسانی IP
-          </button>
+        </div>
+
+      </section>
+
+
+      <!-- SUBSCRIPTIONS -->
+      <section id="subscriptions" class="page">
+
+        <div class="page-head">
+          <div>
+            <h2>Subscription</h2>
+            <p>لینک‌های اشتراک Worker</p>
+          </div>
+        </div>
+
+        <div class="card panel">
+
+          <div class="field">
+            <label>Subscription URL</label>
+            <input id="subUrl"
+              value="Subscription URL will appear from BPB">
+          </div>
+
+          <div class="actions">
+            <button class="btn" onclick="copyInput('subUrl')">
+              کپی لینک
+            </button>
+
+            <button class="btn dark" onclick="openWorker()">
+              مدیریت در BPB
+            </button>
+          </div>
 
         </div>
 
+      </section>
 
-        <div class="table-wrap">
+
+      <!-- SERVERS -->
+      <section id="servers" class="page">
+
+        <div class="page-head">
+          <div>
+            <h2>سرورها</h2>
+            <p>وضعیت Worker و مسیر شبکه</p>
+          </div>
+        </div>
+
+        <div class="card panel">
 
           <table>
 
             <thead>
               <tr>
-                <th>IP</th>
-                <th>موقعیت</th>
-                <th>Latency</th>
-                <th>Loss</th>
-                <th>وضعیت</th>
-                <th>آخرین بررسی</th>
+                <th>Server</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Location</th>
               </tr>
             </thead>
 
             <tbody>
 
               <tr>
-                <td>104.x.x.21</td>
-                <td>Germany</td>
-                <td>42ms</td>
-                <td>0%</td>
-                <td><span class="badge badge-success">مناسب</span></td>
-                <td>2 دقیقه قبل</td>
+                <td>Cloudflare Worker</td>
+                <td>Worker</td>
+                <td><span class="badge green">Online</span></td>
+                <td>Cloudflare Edge</td>
               </tr>
 
               <tr>
-                <td>104.x.x.22</td>
-                <td>Netherlands</td>
-                <td>51ms</td>
-                <td>0%</td>
-                <td><span class="badge badge-success">مناسب</span></td>
-                <td>3 دقیقه قبل</td>
-              </tr>
-
-              <tr>
-                <td>104.x.x.23</td>
-                <td>Finland</td>
-                <td>68ms</td>
-                <td>1%</td>
-                <td><span class="badge badge-warning">متوسط</span></td>
-                <td>4 دقیقه قبل</td>
+                <td>NAT64</td>
+                <td>IPv6</td>
+                <td><span class="badge green">Configured</span></td>
+                <td>USA</td>
               </tr>
 
             </tbody>
@@ -2445,79 +815,315 @@ tbody tr:last-child td{
       </section>
 
 
-      <!-- ================= FRAGMENT ================= -->
+      <!-- DNS -->
+      <section id="dns" class="page">
 
-      <section class="page" id="page-fragment">
-
-        <div class="section-head">
-
+        <div class="page-head">
           <div>
-            <div class="section-title">
-              Fragment
+            <h2>DNS / DoH / NAT64</h2>
+            <p>تنظیمات DNS استخراج‌شده از Export فعلی</p>
+          </div>
+        </div>
+
+        <div class="card panel">
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label>Remote DNS</label>
+              <input value="https://8.8.8.8/dns-query">
             </div>
 
-            <div class="section-desc">
-              تنظیمات Fragment برای مسیرهای پشتیبانی‌شده
+            <div class="field">
+              <label>Local DNS</label>
+              <input value="8.8.8.8">
+            </div>
+
+            <div class="field">
+              <label>Anti-Sanction DNS</label>
+              <input value="178.22.122.100">
+            </div>
+
+            <div class="field">
+              <label>NAT64 Prefix</label>
+              <input value="2602:fc59:11:64::">
             </div>
 
           </div>
 
-          <button class="btn btn-primary" onclick="saveSettings()">
-            ذخیره
-          </button>
+          <div class="save-row">
+            <button class="btn" onclick="notConnected()">
+              ذخیره در BPB
+            </button>
+          </div>
 
         </div>
 
+      </section>
 
-        <div class="card">
 
-          <div class="card-body">
+      <!-- FRAGMENT -->
+      <section id="fragment" class="page">
 
-            <div class="switch-row">
+        <div class="page-head">
+          <div>
+            <h2>Fragment</h2>
+            <p>تنظیمات Fragment فعلی</p>
+          </div>
+        </div>
 
-              <div>
-                <div class="switch-title">
-                  فعال‌سازی Fragment
-                </div>
+        <div class="card panel">
 
-                <div class="switch-desc">
-                  فعال کردن قابلیت Fragment روی کانفیگ‌های انتخاب‌شده
-                </div>
-              </div>
+          <div class="form-grid">
 
-              <div class="switch on" onclick="toggleSwitch(this)"></div>
-
+            <div class="field">
+              <label>Mode</label>
+              <select>
+                <option selected>custom</option>
+                <option>randomized</option>
+              </select>
             </div>
 
-
-            <div class="field-grid" style="margin-top:20px">
-
-              <div class="field">
-                <label>Packets</label>
-                <input class="input" value="tlshello">
-              </div>
-
-              <div class="field">
-                <label>Length</label>
-                <input class="input" value="100-200">
-              </div>
-
-              <div class="field">
-                <label>Interval</label>
-                <input class="input" value="10-20">
-              </div>
-
-              <div class="field">
-                <label>Mode</label>
-
-                <select>
-                  <option>Random</option>
-                  <option>Fixed</option>
-                </select>
-
-              </div>
-
+            <div class="field">
+              <label>Packets</label>
+              <input value="tlshello">
             </div>
+
+            <div class="field">
+              <label>Length Min</label>
+              <input value="100">
+            </div>
+
+            <div class="field">
+              <label>Length Max</label>
+              <input value="200">
+            </div>
+
+            <div class="field">
+              <label>Delay Min</label>
+              <input value="1">
+            </div>
+
+            <div class="field">
+              <label>Delay Max</label>
+              <input value="1">
+            </div>
+
+          </div>
+
+          <div class="save-row">
+            <button class="btn" onclick="notConnected()">
+              ذخیره تنظیمات
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- WARP -->
+      <section id="warp" class="page">
+
+        <div class="page-head">
+          <div>
+            <h2>WARP</h2>
+            <p>تنظیمات Cloudflare WARP</p>
+          </div>
+        </div>
+
+        <div class="card panel">
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label>WARP DNS</label>
+              <input value="1.1.1.1">
+            </div>
+
+            <div class="field">
+              <label>Endpoint</label>
+              <input value="engage.cloudflareclient.com:2408">
+            </div>
+
+            <div class="field">
+              <label>Best Ping Interval</label>
+              <input value="30">
+            </div>
+
+            <div class="field">
+              <label>Reserved Bytes</label>
+              <select>
+                <option selected>Enabled</option>
+                <option>Disabled</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="save-row">
+            <button class="btn" onclick="notConnected()">
+              ذخیره در BPB
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PROXY -->
+      <section id="proxy" class="page">
+
+        <div class="page-head">
+          <div>
+            <h2>Proxy / Clean IP</h2>
+            <p>مدیریت IP و Proxy</p>
+          </div>
+        </div>
+
+        <div class="card panel">
+
+          <div class="field">
+            <label>Clean IP / Domain</label>
+            <input value="www.speedtest.net">
+          </div>
+
+          <div class="field">
+            <label>Proxy IPs</label>
+            <textarea rows="5"
+              placeholder="هر IP در یک خط"></textarea>
+          </div>
+
+          <div class="save-row">
+            <button class="btn" onclick="notConnected()">
+              ذخیره
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ROUTING -->
+      <section id="routing" class="page">
+
+        <div class="page-head">
+          <div>
+            <h2>Routing</h2>
+            <p>قوانین مسیریابی BPB</p>
+          </div>
+        </div>
+
+        <div class="card panel">
+
+          <div class="actions">
+
+            <span class="badge blue">Iran Bypass</span>
+            <span class="badge blue">China Bypass</span>
+            <span class="badge blue">Russia Bypass</span>
+            <span class="badge orange">Block Ads</span>
+            <span class="badge orange">Block Malware</span>
+
+          </div>
+
+          <div class="save-row">
+            <button class="btn" onclick="notConnected()">
+              ذخیره قوانین
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SETTINGS -->
+      <section id="settings" class="page">
+
+        <div class="page-head">
+          <div>
+            <h2>تنظیمات</h2>
+            <p>تنظیمات GURDPANEL</p>
+          </div>
+        </div>
+
+        <div class="card panel">
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label>نام پنل</label>
+              <input value="GURDPANEL">
+            </div>
+
+            <div class="field">
+              <label>Version</label>
+              <input value="GURDPANEL 1.0">
+            </div>
+
+            <div class="field full">
+              <label>BPB Worker URL</label>
+              <input id="workerUrl"
+                value="https://kbe91pk5uqk7x-nt32homoe0n7uz.q7c7w8ng64pkc8txdimu6cksie7l1.workers.dev/EsbwC808ty68/panel">
+            </div>
+
+          </div>
+
+          <div class="save-row">
+            <button class="btn" onclick="saveSettings()">
+              ذخیره
+            </button>
+
+            <button class="btn dark" onclick="openWorker()">
+              باز کردن BPB
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- IMPORT -->
+      <section id="import" class="page">
+
+        <div class="page-head">
+          <div>
+            <h2>Import / Export</h2>
+            <p>مدیریت تنظیمات BPB</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+
+          <div class="card panel">
+
+            <h3>Import Settings</h3>
+
+            <div class="field">
+              <label>Remote URL</label>
+              <input placeholder="https://...">
+            </div>
+
+            <button class="btn" onclick="notConnected()">
+              Import Remote
+            </button>
+
+          </div>
+
+          <div class="card panel">
+
+            <h3>Export Settings</h3>
+
+            <p style="color:#718096;font-size:12px;line-height:2">
+              خروجی تنظیمات از BPB اصلی انجام می‌شود.
+            </p>
+
+            <button class="btn dark" onclick="openWorker()">
+              باز کردن Import / Export اصلی
+            </button>
 
           </div>
 
@@ -2526,801 +1132,59 @@ tbody tr:last-child td{
       </section>
 
 
-      <!-- ================= WARP ================= -->
+      <!-- LOGS -->
+      <section id="logs" class="page">
 
-      <section class="page" id="page-warp">
-
-        <div class="section-head">
-
+        <div class="page-head">
           <div>
-            <div class="section-title">
-              WARP
-            </div>
-
-            <div class="section-desc">
-              مدیریت تنظیمات WARP و WireGuard
-            </div>
-
+            <h2>Activity Logs</h2>
+            <p>رویدادهای GURDPANEL</p>
           </div>
-
-          <button class="btn btn-primary" onclick="toast('تنظیمات WARP ذخیره شد')">
-            ذخیره
-          </button>
-
         </div>
 
-
-        <div class="grid-2">
-
-          <div class="card">
-
-            <div class="card-header">
-              <div class="card-title">
-                وضعیت WARP
-              </div>
-            </div>
-
-            <div class="card-body">
-
-              <div class="switch-row">
-
-                <div>
-                  <div class="switch-title">
-                    WARP فعال
-                  </div>
-
-                  <div class="switch-desc">
-                    استفاده از WARP در مسیر انتخاب‌شده
-                  </div>
-                </div>
-
-                <div class="switch on" onclick="toggleSwitch(this)"></div>
-
-              </div>
-
-
-              <div class="switch-row">
-
-                <div>
-                  <div class="switch-title">
-                    Auto Route
-                  </div>
-
-                  <div class="switch-desc">
-                    انتخاب خودکار مسیر
-                  </div>
-                </div>
-
-                <div class="switch on" onclick="toggleSwitch(this)"></div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="card">
-
-            <div class="card-header">
-              <div class="card-title">
-                اطلاعات WireGuard
-              </div>
-            </div>
-
-            <div class="card-body">
-
-              <div class="field">
-                <label>Endpoint</label>
-                <input class="input" value="engage.cloudflareclient.com:2408">
-              </div>
-
-              <div class="field">
-                <label>MTU</label>
-                <input class="input" value="1280">
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= ACTIVITY ================= -->
-
-      <section class="page" id="page-activity">
-
-        <div class="section-head">
-
-          <div>
-            <div class="section-title">
-              گزارش فعالیت
-            </div>
-
-            <div class="section-desc">
-              تاریخچه عملیات انجام‌شده در پنل
-            </div>
-
-          </div>
-
-          <button class="btn btn-light" onclick="toast('گزارش بروزرسانی شد')">
-            بروزرسانی
-          </button>
-
-        </div>
-
-
-        <div class="table-wrap">
+        <div class="card panel">
 
           <table>
 
             <thead>
               <tr>
-                <th>زمان</th>
-                <th>کاربر</th>
-                <th>عملیات</th>
-                <th>IP</th>
-                <th>نتیجه</th>
+                <th>Time</th>
+                <th>Event</th>
+                <th>Status</th>
               </tr>
             </thead>
 
-            <tbody>
-
-              <tr>
-                <td>23:41</td>
-                <td>admin</td>
-                <td>ساخت کانفیگ جدید</td>
-                <td>185.x.x.x</td>
-                <td><span class="badge badge-success">موفق</span></td>
-              </tr>
-
-              <tr>
-                <td>23:26</td>
-                <td>admin</td>
-                <td>تغییر DNS</td>
-                <td>185.x.x.x</td>
-                <td><span class="badge badge-success">موفق</span></td>
-              </tr>
-
-              <tr>
-                <td>22:58</td>
-                <td>admin</td>
-                <td>ورود به پنل</td>
-                <td>185.x.x.x</td>
-                <td><span class="badge badge-success">موفق</span></td>
-              </tr>
-
-              <tr>
-                <td>22:41</td>
-                <td>system</td>
-                <td>بررسی سرورها</td>
-                <td>—</td>
-                <td><span class="badge badge-success">موفق</span></td>
-              </tr>
-
-            </tbody>
+            <tbody id="logsTable"></tbody>
 
           </table>
 
         </div>
 
       </section>
-
-
-      <!-- ================= SETTINGS ================= -->
-
-      <section class="page" id="page-settings">
-
-        <div class="section-head">
-
-          <div>
-            <div class="section-title">
-              تنظیمات سیستم
-            </div>
-
-            <div class="section-desc">
-              تنظیمات اصلی GURDPANEL
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="settings-grid">
-
-          <div class="settings-menu">
-
-            <button class="active" onclick="settingsTab('general',this)">
-              تنظیمات عمومی
-            </button>
-
-            <button onclick="settingsTab('vpn',this)">
-              تنظیمات VPN
-            </button>
-
-            <button onclick="settingsTab('security',this)">
-              امنیت
-            </button>
-
-            <button onclick="settingsTab('backup',this)">
-              پشتیبان‌گیری
-            </button>
-
-          </div>
-
-
-          <div>
-
-            <!-- GENERAL -->
-
-            <div class="settings-panel active" id="settings-general">
-
-              <div class="card">
-
-                <div class="card-header">
-                  <div class="card-title">
-                    تنظیمات عمومی
-                  </div>
-                </div>
-
-                <div class="card-body">
-
-                  <div class="field-grid">
-
-                    <div class="field">
-                      <label>نام پنل</label>
-                      <input class="input" value="GURDPANEL">
-                    </div>
-
-                    <div class="field">
-                      <label>زبان</label>
-
-                      <select>
-                        <option>فارسی</option>
-                        <option>English</option>
-                      </select>
-
-                    </div>
-
-                    <div class="field">
-                      <label>منطقه زمانی</label>
-
-                      <select>
-                        <option>Asia/Tehran</option>
-                        <option>Europe/Berlin</option>
-                        <option>UTC</option>
-                      </select>
-
-                    </div>
-
-                    <div class="field">
-                      <label>پورت پنل</label>
-                      <input class="input" value="2053">
-                    </div>
-
-                  </div>
-
-                  <button class="btn btn-primary" onclick="saveSettings()">
-                    ذخیره تغییرات
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- VPN -->
-
-            <div class="settings-panel" id="settings-vpn">
-
-              <div class="card">
-
-                <div class="card-header">
-                  <div class="card-title">
-                    تنظیمات VPN
-                  </div>
-                </div>
-
-                <div class="card-body">
-
-                  <div class="switch-row">
-
-                    <div>
-                      <div class="switch-title">
-                        VLESS
-                      </div>
-                      <div class="switch-desc">
-                        فعال بودن پروتکل VLESS
-                      </div>
-                    </div>
-
-                    <div class="switch on" onclick="toggleSwitch(this)"></div>
-
-                  </div>
-
-
-                  <div class="switch-row">
-
-                    <div>
-                      <div class="switch-title">
-                        Trojan
-                      </div>
-                      <div class="switch-desc">
-                        فعال بودن Trojan
-                      </div>
-                    </div>
-
-                    <div class="switch on" onclick="toggleSwitch(this)"></div>
-
-                  </div>
-
-
-                  <div class="switch-row">
-
-                    <div>
-                      <div class="switch-title">
-                        WireGuard
-                      </div>
-                      <div class="switch-desc">
-                        فعال بودن WireGuard
-                      </div>
-                    </div>
-
-                    <div class="switch on" onclick="toggleSwitch(this)"></div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- SECURITY -->
-
-            <div class="settings-panel" id="settings-security">
-
-              <div class="card">
-
-                <div class="card-header">
-                  <div class="card-title">
-                    امنیت
-                  </div>
-                </div>
-
-                <div class="card-body">
-
-                  <div class="field">
-                    <label>رمز عبور جدید</label>
-                    <input class="input" type="password">
-                  </div>
-
-                  <div class="field">
-                    <label>تکرار رمز عبور</label>
-                    <input class="input" type="password">
-                  </div>
-
-                  <div class="switch-row">
-
-                    <div>
-                      <div class="switch-title">
-                        ورود دو مرحله‌ای
-                      </div>
-
-                      <div class="switch-desc">
-                        افزایش امنیت حساب مدیر
-                      </div>
-
-                    </div>
-
-                    <div class="switch" onclick="toggleSwitch(this)"></div>
-
-                  </div>
-
-                  <br>
-
-                  <button class="btn btn-primary" onclick="saveSettings()">
-                    ذخیره
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- BACKUP -->
-
-            <div class="settings-panel" id="settings-backup">
-
-              <div class="card">
-
-                <div class="card-header">
-                  <div class="card-title">
-                    پشتیبان‌گیری
-                  </div>
-                </div>
-
-                <div class="card-body">
-
-                  <div class="switch-row">
-
-                    <div>
-                      <div class="switch-title">
-                        پشتیبان‌گیری خودکار
-                      </div>
-
-                      <div class="switch-desc">
-                        ایجاد Backup دوره‌ای از تنظیمات
-                      </div>
-                    </div>
-
-                    <div class="switch on" onclick="toggleSwitch(this)"></div>
-
-                  </div>
-
-                  <br>
-
-                  <button class="btn btn-primary" onclick="toast('Backup ایجاد شد')">
-                    ایجاد Backup
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
 
     </div>
-
   </main>
+</section>
 
-</div>
-
-
-<!-- =========================
-     USER MODAL
-========================= -->
-
-<div class="modal" id="userModal">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <div class="modal-title">
-        ایجاد کاربر جدید
-      </div>
-
-      <button class="close" onclick="closeModal('userModal')">
-        ×
-      </button>
-
-    </div>
-
-    <div class="modal-body">
-
-      <div class="field">
-        <label>نام کاربر</label>
-        <input class="input" placeholder="مثلاً Ali">
-      </div>
-
-      <div class="field">
-        <label>پلن</label>
-
-        <select class="input">
-          <option>20GB</option>
-          <option>50GB</option>
-          <option>100GB</option>
-          <option>Unlimited</option>
-        </select>
-
-      </div>
-
-      <div class="field">
-        <label>مدت</label>
-
-        <select class="input">
-          <option>30 روز</option>
-          <option>60 روز</option>
-          <option>90 روز</option>
-        </select>
-
-      </div>
-
-    </div>
-
-    <div class="modal-footer">
-
-      <button class="btn btn-primary" onclick="createItem('کاربر');closeModal('userModal')">
-        ایجاد
-      </button>
-
-      <button class="btn btn-light" onclick="closeModal('userModal')">
-        انصراف
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     CONFIG MODAL
-========================= -->
-
-<div class="modal" id="configModal">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <div class="modal-title">
-        ایجاد کانفیگ
-      </div>
-
-      <button class="close" onclick="closeModal('configModal')">
-        ×
-      </button>
-
-    </div>
-
-    <div class="modal-body">
-
-      <div class="field">
-        <label>نام کانفیگ</label>
-        <input class="input" placeholder="GURD-DE-01">
-      </div>
-
-      <div class="field">
-        <label>پروتکل</label>
-
-        <select class="input">
-          <option>VLESS</option>
-          <option>Trojan</option>
-          <option>WireGuard</option>
-        </select>
-
-      </div>
-
-      <div class="field">
-        <label>سرور</label>
-
-        <select class="input">
-          <option>Germany 01</option>
-          <option>Germany 02</option>
-          <option>Finland 01</option>
-        </select>
-
-      </div>
-
-    </div>
-
-    <div class="modal-footer">
-
-      <button class="btn btn-primary" onclick="createItem('کانفیگ');closeModal('configModal')">
-        ایجاد کانفیگ
-      </button>
-
-      <button class="btn btn-light" onclick="closeModal('configModal')">
-        انصراف
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     SERVER MODAL
-========================= -->
-
-<div class="modal" id="serverModal">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <div class="modal-title">
-        افزودن سرور
-      </div>
-
-      <button class="close" onclick="closeModal('serverModal')">
-        ×
-      </button>
-
-    </div>
-
-    <div class="modal-body">
-
-      <div class="field">
-        <label>نام سرور</label>
-        <input class="input" placeholder="Germany 04">
-      </div>
-
-      <div class="field">
-        <label>IP Address</label>
-        <input class="input" placeholder="1.2.3.4">
-      </div>
-
-      <div class="field">
-        <label>پورت SSH</label>
-        <input class="input" value="22">
-      </div>
-
-    </div>
-
-    <div class="modal-footer">
-
-      <button class="btn btn-primary" onclick="createItem('سرور');closeModal('serverModal')">
-        افزودن
-      </button>
-
-      <button class="btn btn-light" onclick="closeModal('serverModal')">
-        انصراف
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     PLAN MODAL
-========================= -->
-
-<div class="modal" id="planModal">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <div class="modal-title">
-        ایجاد پلن
-      </div>
-
-      <button class="close" onclick="closeModal('planModal')">
-        ×
-      </button>
-
-    </div>
-
-    <div class="modal-body">
-
-      <div class="field">
-        <label>نام پلن</label>
-        <input class="input" placeholder="مثلاً 200GB">
-      </div>
-
-      <div class="field">
-        <label>حجم</label>
-        <input class="input" placeholder="200GB">
-      </div>
-
-      <div class="field">
-        <label>قیمت</label>
-        <input class="input" placeholder="500000">
-      </div>
-
-    </div>
-
-    <div class="modal-footer">
-
-      <button class="btn btn-primary" onclick="createItem('پلن');closeModal('planModal')">
-        ایجاد
-      </button>
-
-      <button class="btn btn-light" onclick="closeModal('planModal')">
-        انصراف
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     NOTIFICATION MODAL
-========================= -->
-
-<div class="modal" id="notificationModal">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <div class="modal-title">
-        اعلان‌ها
-      </div>
-
-      <button class="close" onclick="closeModal('notificationModal')">
-        ×
-      </button>
-
-    </div>
-
-    <div class="modal-body">
-
-      <div class="log">
-
-        <div class="log-icon">
-          !
-        </div>
-
-        <div>
-          <div class="log-title">
-            مصرف Germany 03 بالا است
-          </div>
-
-          <div class="log-meta">
-            ۳۷ دقیقه قبل
-          </div>
-        </div>
-
-      </div>
-
-
-      <div class="log">
-
-        <div class="log-icon">
-          ✓
-        </div>
-
-        <div>
-          <div class="log-title">
-            تمام سرویس‌ها در دسترس هستند
-          </div>
-
-          <div class="log-meta">
-            ۱ ساعت قبل
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<div class="toast" id="toast"></div>
-
+<div id="toast" class="toast"></div>
 
 <script>
 
-/* =========================
-   LOGIN
-========================= */
+/* =====================================================
+   GURDPANEL
+   BPB Worker URL
+   ===================================================== */
+
+const BPB_URL =
+"https://kbe91pk5uqk7x-nt32homoe0n7uz.q7c7w8ng64pkc8txdimu6cksie7l1.workers.dev/EsbwC808ty68/panel";
+
+
+/* LOGIN STATE */
 
 function login(){
 
-  const username =
-    document.getElementById("username").value.trim();
+  const email =
+    document.getElementById("email").value.trim();
 
   const password =
     document.getElementById("password").value;
@@ -3328,297 +1192,369 @@ function login(){
   const error =
     document.getElementById("loginError");
 
-  if(username === "admin" && password === "gurd123"){
+  error.classList.add("hidden");
 
-    localStorage.setItem("gurdpanel_auth","1");
+  if(!email || !password){
 
-    document.getElementById("loginPage").style.display="none";
+    error.textContent =
+      "ایمیل و رمز عبور را وارد کنید.";
 
-    document.getElementById("app").style.display="block";
+    error.classList.remove("hidden");
 
-  }else{
-
-    error.style.display="block";
-
+    return;
   }
+
+  /*
+    IMPORTANT:
+    We do NOT store the password.
+    The current BPB release uses its own authentication
+    and Secure Path. A GitHub Pages frontend cannot
+    safely reproduce that authentication without a
+    backend proxy controlled by you.
+  */
+
+  sessionStorage.setItem(
+    "gurdpanel_login",
+    "1"
+  );
+
+  sessionStorage.setItem(
+    "gurdpanel_email",
+    email
+  );
+
+  addLog("ورود به GURDPANEL");
+
+  /*
+    For now open the real BPB login in the same tab.
+    This avoids exposing credentials in GitHub.
+  */
+
+  window.location.href = BPB_URL;
 
 }
 
 
-document.addEventListener("keydown",function(e){
+/* APP */
 
-  if(e.key === "Enter"){
+function showApp(){
 
-    const loginPage =
-      document.getElementById("loginPage");
+  document
+    .getElementById("loginPage")
+    .classList.add("hidden");
 
-    if(loginPage.style.display !== "none"){
+  document
+    .getElementById("app")
+    .classList.remove("hidden");
 
-      login();
-
-    }
-
-  }
-
-});
+}
 
 
-/* =========================
-   AUTH CHECK
-========================= */
+/* PAGE */
 
-window.addEventListener("load",function(){
+function showPage(id,button){
 
-  if(localStorage.getItem("gurdpanel_auth")==="1"){
-
-    document.getElementById("loginPage").style.display="none";
-
-    document.getElementById("app").style.display="block";
-
-  }
-
-});
-
-
-/* =========================
-   PAGE NAVIGATION
-========================= */
-
-const pageTitles={
-
-  dashboard:"داشبورد",
-  users:"مدیریت کاربران",
-  configs:"مدیریت کانفیگ‌ها",
-  subscriptions:"اشتراک‌ها",
-  servers:"سرورها",
-  traffic:"گزارش ترافیک",
-  dns:"DNS / NAT64",
-  proxy:"Proxy / Clean IP",
-  fragment:"Fragment",
-  warp:"WARP",
-  activity:"گزارش فعالیت",
-  settings:"تنظیمات"
-
-};
-
-
-function showPage(page,button){
-
-  document.querySelectorAll(".page")
+  document
+    .querySelectorAll(".page")
     .forEach(p=>p.classList.remove("active"));
 
-  const target =
-    document.getElementById("page-"+page);
+  const page =
+    document.getElementById(id);
 
-  if(target){
-    target.classList.add("active");
-  }
+  if(page) page.classList.add("active");
 
-  document.querySelectorAll(".menu button")
+  document
+    .querySelectorAll(".nav-btn")
     .forEach(b=>b.classList.remove("active"));
 
-  if(button){
-    button.classList.add("active");
-  }
+  if(button) button.classList.add("active");
 
-  document.getElementById("pageTitle").textContent =
-    pageTitles[page] || "GURDPANEL";
+  const titles = {
 
-  closeMobileMenu();
+    dashboard:"داشبورد",
+    configs:"کانفیگ‌ها",
+    subscriptions:"Subscription",
+    servers:"سرورها",
+    dns:"DNS / DoH / NAT64",
+    fragment:"Fragment",
+    warp:"WARP",
+    proxy:"Proxy / Clean IP",
+    routing:"Routing",
+    settings:"تنظیمات",
+    import:"Import / Export",
+    logs:"Activity Logs"
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  };
+
+  document.getElementById("topTitle").textContent =
+    titles[id] || "GURDPANEL";
+
+  closeSidebar();
 
 }
 
 
-/* =========================
-   MOBILE MENU
-========================= */
+function showPageById(id){
 
-function openMobileMenu(){
+  const btn =
+    [...document.querySelectorAll(".nav-btn")]
+      .find(x =>
+        x.getAttribute("onclick") &&
+        x.getAttribute("onclick").includes("'" + id + "'")
+      );
 
-  document.getElementById("sidebar")
+  showPage(id,btn);
+
+}
+
+
+/* SIDEBAR */
+
+function openSidebar(){
+
+  document
+    .getElementById("sidebar")
     .classList.add("open");
 
-  document.getElementById("overlay")
+  document
+    .getElementById("overlay")
     .classList.add("open");
 
 }
 
-function closeMobileMenu(){
+function closeSidebar(){
 
-  document.getElementById("sidebar")
+  document
+    .getElementById("sidebar")
     .classList.remove("open");
 
-  document.getElementById("overlay")
+  document
+    .getElementById("overlay")
     .classList.remove("open");
 
 }
 
 
-/* =========================
-   MODALS
-========================= */
+/* BPB */
 
-function openModal(id){
+function openWorker(){
 
-  document.getElementById(id)
-    .classList.add("show");
-
-}
-
-function closeModal(id){
-
-  document.getElementById(id)
-    .classList.remove("show");
+  window.open(
+    BPB_URL,
+    "_blank",
+    "noopener,noreferrer"
+  );
 
 }
 
 
-/* =========================
-   TOAST
-========================= */
-
-let toastTimer;
-
-function toast(message){
-
-  const el =
-    document.getElementById("toast");
-
-  el.textContent=message;
-
-  el.classList.add("show");
-
-  clearTimeout(toastTimer);
-
-  toastTimer=setTimeout(function(){
-
-    el.classList.remove("show");
-
-  },2500);
-
-}
-
-
-/* =========================
-   SWITCH
-========================= */
-
-function toggleSwitch(el){
-
-  el.classList.toggle("on");
-
-}
-
-
-/* =========================
-   SETTINGS
-========================= */
-
-function settingsTab(name,button){
-
-  document.querySelectorAll(".settings-panel")
-    .forEach(p=>p.classList.remove("active"));
-
-  const panel =
-    document.getElementById("settings-"+name);
-
-  if(panel){
-    panel.classList.add("active");
-  }
-
-  document.querySelectorAll(".settings-menu button")
-    .forEach(b=>b.classList.remove("active"));
-
-  button.classList.add("active");
-
-}
-
-
-/* =========================
-   SAVE
-========================= */
-
-function saveSettings(){
-
-  toast("تنظیمات با موفقیت ذخیره شد");
-
-}
-
-
-/* =========================
-   CREATE
-========================= */
-
-function createItem(type){
-
-  toast(type+" با موفقیت ایجاد شد");
-
-}
-
-
-/* =========================
-   REFRESH
-========================= */
-
-function refreshPanel(){
-
-  toast("پنل بروزرسانی شد");
-
-}
-
-
-/* =========================
-   LOGOUT
-========================= */
+/* LOGOUT */
 
 function logout(){
 
-  localStorage.removeItem("gurdpanel_auth");
+  sessionStorage.removeItem("gurdpanel_login");
+  sessionStorage.removeItem("gurdpanel_email");
 
   location.reload();
 
 }
 
 
-/* =========================
-   CLOSE MODAL WITH ESC
-========================= */
+/* COPY */
 
-document.addEventListener("keydown",function(e){
+function copyText(text){
 
-  if(e.key==="Escape"){
+  navigator.clipboard.writeText(text);
 
-    document.querySelectorAll(".modal.show")
-      .forEach(m=>m.classList.remove("show"));
+  toast("کپی شد");
+
+  addLog("کپی " + text);
+
+}
+
+function copyInput(id){
+
+  const el =
+    document.getElementById(id);
+
+  navigator.clipboard.writeText(
+    el.value
+  );
+
+  toast("لینک کپی شد");
+
+}
+
+
+/* SETTINGS */
+
+function saveSettings(){
+
+  const url =
+    document.getElementById("workerUrl").value.trim();
+
+  if(url){
+
+    localStorage.setItem(
+      "gurdpanel_worker",
+      url
+    );
+
+    toast("تنظیمات ذخیره شد");
+
+    addLog("تغییر تنظیمات Worker");
 
   }
 
-});
+}
 
 
-/* =========================
-   CLOSE OUTSIDE MODAL
-========================= */
+/* NOT CONNECTED */
 
-document.querySelectorAll(".modal")
-.forEach(function(modal){
+function notConnected(){
 
-  modal.addEventListener("click",function(e){
+  toast(
+    "این بخش برای اتصال واقعی باید از Backend BPB API عبور کند."
+  );
 
-    if(e.target===modal){
+  addLog(
+    "درخواست عملیات Backend"
+  );
 
-      modal.classList.remove("show");
+}
 
-    }
+
+/* TOAST */
+
+let toastTimer;
+
+function toast(message){
+
+  const t =
+    document.getElementById("toast");
+
+  t.textContent = message;
+
+  t.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer =
+    setTimeout(()=>{
+      t.classList.remove("show");
+    },2500);
+
+}
+
+
+/* LOGS */
+
+function addLog(event){
+
+  const logs =
+    JSON.parse(
+      localStorage.getItem("gurd_logs") || "[]"
+    );
+
+  logs.unshift({
+
+    time:new Date().toLocaleString("fa-IR"),
+
+    event:event
 
   });
 
-});
+  localStorage.setItem(
+    "gurd_logs",
+    JSON.stringify(logs.slice(0,30))
+  );
+
+  renderLogs();
+
+}
+
+
+function renderLogs(){
+
+  const tbody =
+    document.getElementById("logsTable");
+
+  if(!tbody) return;
+
+  const logs =
+    JSON.parse(
+      localStorage.getItem("gurd_logs") || "[]"
+    );
+
+  tbody.innerHTML =
+    logs.map(x=>`
+
+      <tr>
+
+        <td>${escapeHtml(x.time)}</td>
+
+        <td>${escapeHtml(x.event)}</td>
+
+        <td>
+          <span class="badge green">
+            OK
+          </span>
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+function escapeHtml(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* INIT */
+
+(function(){
+
+  const saved =
+    localStorage.getItem(
+      "gurdpanel_worker"
+    );
+
+  if(saved){
+
+    document.getElementById(
+      "workerUrl"
+    ).value = saved;
+
+  }
+
+  renderLogs();
+
+  /*
+    Do not automatically reuse BPB credentials.
+    Only the session flag is checked for this UI.
+  */
+
+  if(
+    sessionStorage.getItem(
+      "gurdpanel_login"
+    ) === "1"
+  ){
+
+    showApp();
+
+  }
+
+})();
 
 </script>
 
