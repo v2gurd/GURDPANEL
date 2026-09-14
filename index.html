@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#080b10">
+<meta name="description" content="GURDPANEL - پنل مدیریت سرویس VPN">
+
+<title>GURDPANEL | پنل مدیریت</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --bg:#07090d;
+    --panel:#0d1118;
+    --panel2:#111722;
+    --border:rgba(255,255,255,.08);
+    --text:#f4f7fb;
+    --muted:#8993a4;
+    --green:#39e58c;
+    --blue:#4da3ff;
+    --red:#ff5571;
+    --yellow:#ffc857;
+}
+
+body{
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+    background:
+        radial-gradient(circle at 80% 0%,rgba(57,229,140,.07),transparent 28%),
+        radial-gradient(circle at 10% 100%,rgba(77,163,255,.06),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:250px;
+    background:rgba(10,13,19,.92);
+    border-left:1px solid var(--border);
+    padding:24px 16px;
+    position:fixed;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index:20;
+    backdrop-filter:blur(20px);
+}
+
+.logo{
+    padding:8px 10px 28px;
+}
+
+.logo-title{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:.5px;
+}
+
+.logo-title span{
+    color:var(--green);
+}
+
+.logo-sub{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:5px;
+}
+
+.menu-title{
+    color:#596273;
+    font-size:10px;
+    font-weight:800;
+    margin:20px 10px 8px;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.nav button{
+    border:0;
+    background:transparent;
+    color:#9ca5b5;
+    width:100%;
+    padding:12px 13px;
+    border-radius:11px;
+    text-align:right;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    transition:.2s;
+    font-size:13px;
+}
+
+.nav button:hover{
+    background:rgba(255,255,255,.045);
+    color:white;
+}
+
+.nav button.active{
+    background:rgba(57,229,140,.09);
+    color:var(--green);
+    border:1px solid rgba(57,229,140,.12);
+}
+
+.icon{
+    width:22px;
+    text-align:center;
+    font-size:16px;
+}
+
+/* MAIN */
+
+.main{
+    width:calc(100% - 250px);
+    margin-right:250px;
+    padding:25px;
+}
+
+.topbar{
+    height:62px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:24px;
+}
+
+.page-title h1{
+    font-size:23px;
+    font-weight:850;
+}
+
+.page-title p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:5px;
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:9px 13px;
+    border-radius:10px;
+    background:rgba(57,229,140,.06);
+    border:1px solid rgba(57,229,140,.12);
+    color:var(--green);
+    font-size:11px;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+    background:var(--green);
+    border-radius:50%;
+    box-shadow:0 0 10px var(--green);
+}
+
+/* CARDS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.card{
+    background:linear-gradient(
+        145deg,
+        rgba(20,25,34,.94),
+        rgba(11,14,20,.94)
+    );
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:19px;
+    box-shadow:0 12px 40px rgba(0,0,0,.15);
+}
+
+.stat-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.stat-name{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.stat-icon{
+    width:34px;
+    height:34px;
+    display:grid;
+    place-items:center;
+    border-radius:10px;
+    background:rgba(255,255,255,.045);
+}
+
+.stat-number{
+    font-size:26px;
+    font-weight:900;
+    margin-top:15px;
+}
+
+.stat-bottom{
+    font-size:10px;
+    color:var(--muted);
+    margin-top:6px;
+}
+
+.green{
+    color:var(--green);
+}
+
+.blue{
+    color:var(--blue);
+}
+
+.yellow{
+    color:var(--yellow);
+}
+
+.red{
+    color:var(--red);
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:15px;
+    margin-top:15px;
+}
+
+.card-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+}
+
+.card-title h2{
+    font-size:14px;
+}
+
+.card-title span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* SERVER */
+
+.server{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.055);
+}
+
+.server:last-child{
+    border-bottom:0;
+}
+
+.server-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.server-icon{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    display:grid;
+    place-items:center;
+    background:rgba(77,163,255,.08);
+    color:var(--blue);
+}
+
+.server-name{
+    font-size:12px;
+    font-weight:700;
+}
+
+.server-ip{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:4px;
+}
+
+.server-status{
+    text-align:left;
+}
+
+.online{
+    color:var(--green);
+    font-size:10px;
+}
+
+.load{
+    width:90px;
+    height:5px;
+    background:#202630;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:7px;
+}
+
+.load span{
+    display:block;
+    height:100%;
+    border-radius:20px;
+    background:var(--green);
+}
+
+/* ACTIVITY */
+
+.activity{
+    display:flex;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,.055);
+}
+
+.activity:last-child{
+    border-bottom:0;
+}
+
+.activity-icon{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    display:grid;
+    place-items:center;
+    background:rgba(57,229,140,.07);
+}
+
+.activity-text{
+    font-size:11px;
+}
+
+.activity-text strong{
+    color:white;
+}
+
+.activity-time{
+    color:var(--muted);
+    font-size:9px;
+    margin-top:4px;
+}
+
+/* TRAFFIC */
+
+.traffic{
+    margin-top:15px;
+}
+
+.chart{
+    height:190px;
+    display:flex;
+    align-items:flex-end;
+    gap:8px;
+    padding:20px 5px 5px;
+}
+
+.bar{
+    flex:1;
+    background:linear-gradient(
+        to top,
+        rgba(57,229,140,.15),
+        var(--green)
+    );
+    border-radius:6px 6px 2px 2px;
+    min-height:15px;
+    opacity:.85;
+    transition:.3s;
+}
+
+.bar:hover{
+    opacity:1;
+    transform:translateY(-4px);
+}
+
+/* MOBILE */
+
+.mobile-menu{
+    display:none;
+}
+
+@media(max-width:1000px){
+
+    .sidebar{
+        transform:translateX(100%);
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        width:100%;
+        margin-right:0;
+        padding:17px;
+    }
+
+    .mobile-menu{
+        display:block;
+        border:1px solid var(--border);
+        background:var(--panel);
+        color:white;
+        width:40px;
+        height:40px;
+        border-radius:10px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:550px){
+
+    .topbar{
+        height:auto;
+        align-items:flex-start;
+    }
+
+    .top-actions .status{
+        display:none;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .card{
+        padding:15px;
+        border-radius:13px;
+    }
+
+    .stat-number{
+        font-size:21px;
+    }
+
+    .stat-name{
+        font-size:10px;
+    }
+
+    .grid{
+        gap:10px;
+    }
+}
+
+/* LOGIN */
+
+.login{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(57,229,140,.08),
+            transparent 35%
+        ),
+        #05070a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.login.hidden{
+    display:none;
+}
+
+.login-box{
+    width:100%;
+    max-width:390px;
+    background:rgba(13,17,24,.92);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 30px 100px rgba(0,0,0,.5);
+    backdrop-filter:blur(25px);
+}
+
+.login-logo{
+    text-align:center;
+    margin-bottom:28px;
+}
+
+.login-logo h1{
+    font-size:30px;
+    font-weight:950;
+}
+
+.login-logo h1 span{
+    color:var(--green);
+}
+
+.login-logo p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:6px;
+}
+
+.input{
+    margin-bottom:13px;
+}
+
+.input label{
+    display:block;
+    color:#9da6b5;
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+.input input{
+    width:100%;
+    background:#080b10;
+    border:1px solid var(--border);
+    color:white;
+    padding:13px;
+    border-radius:10px;
+    outline:0;
+    direction:ltr;
+}
+
+.input input:focus{
+    border-color:rgba(57,229,140,.45);
+}
+
+.login-btn{
+    width:100%;
+    border:0;
+    background:var(--green);
+    color:#041009;
+    padding:13px;
+    border-radius:10px;
+    font-weight:900;
+    margin-top:5px;
+}
+
+.login-error{
+    color:var(--red);
+    text-align:center;
+    font-size:10px;
+    margin-top:10px;
+    min-height:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="login">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+            <h1>GURD<span>PANEL</span></h1>
+            <p>Advanced VPN Management Panel</p>
+        </div>
+
+        <div class="input">
+            <label>نام کاربری</label>
+            <input
+                id="username"
+                type="text"
+                placeholder="admin"
+                autocomplete="username"
+            >
+        </div>
+
+        <div class="input">
+            <label>رمز عبور</label>
+            <input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+            >
+        </div>
+
+        <button class="login-btn" onclick="loginUser()">
+            ورود به GURDPANEL
+        </button>
+
+        <div class="login-error" id="loginError"></div>
+
+    </div>
+
+</div>
+
+
+<!-- APP -->
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo">
+            <div class="logo-title">
+                GURD<span>PANEL</span>
+            </div>
+            <div class="logo-sub">
+                VPN MANAGEMENT SYSTEM
+            </div>
+        </div>
+
+        <div class="menu-title">مدیریت</div>
+
+        <div class="nav">
+
+            <button class="active">
+                <span class="icon">⌂</span>
+                داشبورد
+            </button>
+
+            <button>
+                <span class="icon">◉</span>
+                کاربران
+            </button>
+
+            <button>
+                <span class="icon">⌘</span>
+                کانفیگ‌ها
+            </button>
+
+            <button>
+                <span class="icon">▣</span>
+                سرورها
+            </button>
+
+        </div>
+
+        <div class="menu-title">سرویس</div>
+
+        <div class="nav">
+
+            <button>
+                <span class="icon">◴</span>
+                مصرف ترافیک
+            </button>
+
+            <button>
+                <span class="icon">▤</span>
+                اشتراک‌ها
+            </button>
+
+            <button>
+                <span class="icon">⚡</span>
+                تنظیمات VPN
+            </button>
+
+        </div>
+
+        <div class="menu-title">سیستم</div>
+
+        <div class="nav">
+
+            <button>
+                <span class="icon">⚙</span>
+                تنظیمات
+            </button>
+
+            <button onclick="logout()">
+                <span class="icon">↪</span>
+                خروج
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <div class="topbar">
+
+            <button
+                class="mobile-menu"
+                onclick="toggleMenu()"
+            >
+                ☰
+            </button>
+
+            <div class="page-title">
+                <h1>داشبورد</h1>
+                <p>خوش آمدید به GURDPANEL</p>
+            </div>
+
+            <div class="top-actions">
+
+                <div class="status">
+                    <span class="dot"></span>
+                    Worker Online
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="card">
+
+                <div class="stat-head">
+                    <div class="stat-name">
+                        کاربران فعال
+                    </div>
+
+                    <div class="stat-icon green">
+                        👤
+                    </div>
+                </div>
+
+                <div class="stat-number">
+                    128
+                </div>
+
+                <div class="stat-bottom">
+                    +12 کاربر این هفته
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stat-head">
+                    <div class="stat-name">
+                        اتصال آنلاین
+                    </div>
+
+                    <div class="stat-icon blue">
+                        ◉
+                    </div>
+                </div>
+
+                <div class="stat-number">
+                    47
+                </div>
+
+                <div class="stat-bottom">
+                    اتصال هم‌اکنون
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stat-head">
+                    <div class="stat-name">
+                        مصرف امروز
+                    </div>
+
+                    <div class="stat-icon yellow">
+                        ⇅
+                    </div>
+                </div>
+
+                <div class="stat-number">
+                    86.4 GB
+                </div>
+
+                <div class="stat-bottom">
+                    مصرف ترافیک امروز
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stat-head">
+                    <div class="stat-name">
+                        آپ‌تایم
+                    </div>
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+                </div>
+
+                <div class="stat-number">
+                    99.9%
+                </div>
+
+                <div class="stat-bottom">
+                    وضعیت سرویس پایدار
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GRID -->
+
+        <section class="grid">
+
+            <!-- SERVERS -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    <h2>وضعیت سرورها</h2>
+                    <span>LIVE</span>
+                </div>
+
+
+                <div class="server">
+
+                    <div class="server-info">
+
+                        <div class="server-icon">
+                            ◈
+                        </div>
+
+                        <div>
+                            <div class="server-name">
+                                Worker Main
+                            </div>
+
+                            <div class="server-ip">
+                                Cloudflare Worker
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="server-status">
+
+                        <div class="online">
+                            ● Online
+                        </div>
+
+                        <div class="load">
+                            <span style="width:32%"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="server">
+
+                    <div class="server-info">
+
+                        <div class="server-icon">
+                            ◈
+                        </div>
+
+                        <div>
+                            <div class="server-name">
+                                Node Germany
+                            </div>
+
+                            <div class="server-ip">
+                                DE • Primary
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="server-status">
+
+                        <div class="online">
+                            ● Online
+                        </div>
+
+                        <div class="load">
+                            <span style="width:58%"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="server">
+
+                    <div class="server-info">
+
+                        <div class="server-icon">
+                            ◈
+                        </div>
+
+                        <div>
+                            <div class="server-name">
+                                Node Finland
+                            </div>
+
+                            <div class="server-ip">
+                                FI • Backup
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="server-status">
+
+                        <div class="online">
+                            ● Online
+                        </div>
+
+                        <div class="load">
+                            <span style="width:21%"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIVITY -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    <h2>فعالیت اخیر</h2>
+                    <span>آخرین رویدادها</span>
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">
+                        👤
+                    </div>
+
+                    <div class="activity-text">
+                        کاربر جدید اضافه شد
+                        <div class="activity-time">
+                            ۲ دقیقه پیش
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">
+                        🔑
+                    </div>
+
+                    <div class="activity-text">
+                        کانفیگ جدید ایجاد شد
+                        <div class="activity-time">
+                            ۸ دقیقه پیش
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">
+                        ⚡
+                    </div>
+
+                    <div class="activity-text">
+                        Worker با موفقیت پاسخ داد
+                        <div class="activity-time">
+                            ۱۴ دقیقه پیش
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="activity">
+
+                    <div class="activity-icon">
+                        ✓
+                    </div>
+
+                    <div class="activity-text">
+                        سرویس فعال است
+                        <div class="activity-time">
+                            ۲۳ دقیقه پیش
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRAFFIC -->
+
+        <section class="card traffic">
+
+            <div class="card-title">
+
+                <h2>
+                    مصرف ترافیک
+                </h2>
+
+                <span>
+                    ۲۴ ساعت گذشته
+                </span>
+
+            </div>
+
+
+            <div class="chart">
+
+                <div class="bar" style="height:32%"></div>
+                <div class="bar" style="height:45%"></div>
+                <div class="bar" style="height:37%"></div>
+                <div class="bar" style="height:58%"></div>
+                <div class="bar" style="height:51%"></div>
+                <div class="bar" style="height:69%"></div>
+                <div class="bar" style="height:62%"></div>
+                <div class="bar" style="height:77%"></div>
+                <div class="bar" style="height:54%"></div>
+                <div class="bar" style="height:81%"></div>
+                <div class="bar" style="height:66%"></div>
+                <div class="bar" style="height:91%"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+/*
+    GURDPANEL
+    Version 1.0
+
+    توجه:
+    این لاگین فعلاً نمایشی است.
+    در مرحله بعد به API امن Cloudflare Worker
+    متصل می‌شود.
+*/
+
+function loginUser(){
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("loginError");
+
+
+    /*
+        اطلاعات ورود موقت نسخه اولیه
+        بعداً حذف می‌شود و احراز هویت واقعی
+        روی Worker قرار می‌گیرد.
+    */
+
+    if(
+        username === "admin" &&
+        password === "gurd123"
+    ){
+
+        localStorage.setItem(
+            "gurdpanel_auth",
+            "true"
+        );
+
+        document
+            .getElementById("login")
+            .classList.add("hidden");
+
+        error.textContent = "";
+
+    }else{
+
+        error.textContent =
+            "نام کاربری یا رمز عبور اشتباه است.";
+
+    }
+
+}
+
+
+function logout(){
+
+    localStorage.removeItem(
+        "gurdpanel_auth"
+    );
+
+    document
+        .getElementById("login")
+        .classList.remove("hidden");
+
+}
+
+
+function toggleMenu(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+
+window.addEventListener(
+    "load",
+    function(){
+
+        const auth =
+            localStorage.getItem(
+                "gurdpanel_auth"
+            );
+
+        if(auth === "true"){
+
+            document
+                .getElementById("login")
+                .classList.add("hidden");
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
